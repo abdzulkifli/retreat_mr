@@ -1,12 +1,26 @@
-# HOME31 Journey — `retreat_mr` GitHub Pages Build
+# HOME31 — The Journey of an Idea
+## Phase 4: Interactive World Build
 
-This package is configured specifically for:
+This repository is configured specifically for:
 
 `https://abdzulkifli.github.io/retreat_mr/`
 
-## Upload
+## What changed in Phase 4
 
-Upload the **contents of this folder** to the root of the `retreat_mr` repository. At the repository's first level you must see:
+- The 3D world itself is now interactive.
+- Each chapter highlights one meaningful object at a time.
+- Hovering and tapping produces immediate visual feedback.
+- Seven environments transform as progress is completed.
+- Idea 31 has stronger expressions, an animated aura, reaction symbols and a propulsion effect.
+- Scroll and arrow-key navigation are available after completing a chapter.
+- Mobile keeps the 3D stage and narrative panel in separate protected zones.
+- Sound is optional and generated locally through the Web Audio API.
+- No external models, fonts, HDR files or runtime CDN assets are required.
+
+## Upload correctly
+
+Extract the ZIP and upload the **contents** directly to the root of the `retreat_mr` repository.
+At the repository's first level you must see:
 
 - `.github/`
 - `public/`
@@ -25,17 +39,23 @@ Then open **Actions → Deploy HOME31 Journey → Run workflow**.
 
 ## Verify deployment
 
-First open:
+Open:
 
 `https://abdzulkifli.github.io/retreat_mr/health.html`
 
-- If this says **DEPLOYMENT OK**, GitHub Pages and the build output work.
-- If `health.html` is 404, the workflow did not deploy or Pages is using the wrong source.
-- If `health.html` works but the main page fails, the main page will now display a visible runtime error instead of a blank screen.
+It should display **DEPLOYMENT OK**.
 
-## Local run
+## Local development
 
 ```bash
 npm install --legacy-peer-deps
 npm run dev
+```
+
+## Production validation
+
+```bash
+npm run check
+npm run build
+npm run preview
 ```
