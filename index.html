@@ -4,11 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#10233F" />
+  <meta name="description" content="HOME31 — The Journey of an Idea" />
   <title>HOME31 — The Journey of an Idea</title>
+  <style>
+    html,body{margin:0;background:#f4efe5;color:#10233f;font-family:system-ui,sans-serif}
+    #boot{position:fixed;inset:0;display:grid;place-items:center;text-align:center;padding:24px;background:#f4efe5;z-index:9999}
+    #boot strong{display:block;font-size:clamp(2rem,7vw,5rem);line-height:.95}
+    #boot span{display:block;margin-top:14px;opacity:.68}
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#story-panel">Skip to story</a>
-  <div id="root"></div>
+  <div id="root">
+    <div id="boot"><div><strong>Preparing Idea 31…</strong><span>Loading the HOME31 journey.</span></div></div>
+  </div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

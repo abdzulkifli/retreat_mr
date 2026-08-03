@@ -1,17 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-const repositoryName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? '';
-const isUserOrOrganisationSite = repositoryName.endsWith('.github.io');
-const githubPagesBase = isUserOrOrganisationSite || !repositoryName
-  ? '/'
-  : `/${repositoryName}/`;
-
+// This repository is published at:
+// https://abdzulkifli.github.io/retreat_mr/
 export default defineConfig({
   plugins: [react()],
-  base: process.env.GITHUB_ACTIONS ? githubPagesBase : '/',
+  base: '/retreat_mr/',
   build: {
-    sourcemap: true,
-    target: 'es2020'
+    target: 'es2020',
+    sourcemap: false,
+    outDir: 'dist',
+    emptyOutDir: true
   }
 });
