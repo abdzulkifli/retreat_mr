@@ -1,20 +1,14 @@
-# HOME31 No-Build GitHub Pages Rescue
+# HOME31 — Clean Static Rebuild
 
-This version runs directly on GitHub Pages. It does not require React, Vite, npm, GitHub Actions, or a `dist` build.
+This edition is a self-contained GitHub Pages experience. It does not require npm, React, Vite, a build workflow or external assets.
 
-## Deploy
+## Publish
+1. Upload `index.html`, `404.html`, `health.html`, `.nojekyll` and this README directly to the repository root.
+2. In GitHub: **Settings → Pages → Deploy from a branch → main → /(root)**.
+3. Test `/health.html`, then open the site root.
 
-1. Delete or move the old React/Vite files from the repository root.
-2. Upload these files directly to the root of `retreat_mr`:
-   - `index.html`
-   - `404.html`
-   - `health.html`
-   - `.nojekyll`
-3. In GitHub, open **Settings → Pages**.
-4. Set **Source** to **Deploy from a branch**.
-5. Select branch **main** and folder **/(root)**.
-6. Save and wait for GitHub Pages to publish.
-7. Test: `https://abdzulkifli.github.io/retreat_mr/health.html`
-8. Then open: `https://abdzulkifli.github.io/retreat_mr/`
-
-Because this is a single self-contained HTML experience, there are no asset paths or build workflow that can fail.
+## Interaction
+- Begin with **Begin the journey**.
+- Tap highlighted graphic objects or use the main action button.
+- Complete each chapter before continuing.
+- Previous/Next, chapter progress, restart, sound and swipe navigation are included.

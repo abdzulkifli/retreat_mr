@@ -1,566 +1,331 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<meta name="theme-color" content="#0b1d32" />
-<title>HOME31 — The Explosive Journey of Idea 31</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0c2038">
+<title>HOME31 — The Journey of Idea 31</title>
 <style>
-  :root{
-    --navy:#0b1d32;
-    --navy-2:#173b5a;
-    --ink:#11283f;
-    --paper:#fffaf0;
-    --sand:#f3e7d3;
-    --sky:#b9dfe5;
-    --teal:#52a99a;
-    --teal-dark:#25756d;
-    --gold:#e4b958;
-    --coral:#e47762;
-    --purple:#947fc0;
-    --blue:#5396c7;
-    --green:#6eae78;
-    --red:#c65e5e;
-    --line:rgba(17,40,63,.14);
-    --shadow:0 24px 70px rgba(11,29,50,.16);
-    --ease:cubic-bezier(.2,.82,.2,1);
-  }
+:root{
+  --navy:#0c2038;--navy2:#173a59;--ink:#10263e;--ivory:#f7f1e6;--paper:#fffaf1;
+  --teal:#4f9d98;--teal2:#2f7774;--gold:#d6aa54;--coral:#dd735f;--green:#6aa579;
+  --blue:#5e94c2;--purple:#8f7cb4;--stone:#d8d3c9;--line:rgba(16,38,62,.13);
+  --shadow:0 24px 70px rgba(9,28,48,.18);--ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box}
+html{background:var(--navy);scroll-behavior:smooth}
+body{margin:0;color:var(--ink);background:var(--ivory);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+button{font:inherit}
+button:focus-visible{outline:3px solid rgba(214,170,84,.8);outline-offset:3px}
+[hidden]{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth;background:var(--navy)}
-  body{margin:0;overflow-x:hidden;color:var(--ink);background:var(--paper);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
-  button{font:inherit}
-  button:focus-visible,a:focus-visible{outline:3px solid rgba(228,185,88,.75);outline-offset:4px}
-  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* LANDING */
+.landing{min-height:100dvh;display:grid;place-items:center;padding:max(24px,env(safe-area-inset-top)) max(22px,5vw) max(28px,env(safe-area-inset-bottom));overflow:hidden;position:relative;background:
+  radial-gradient(circle at 84% 13%,rgba(91,157,153,.25),transparent 30%),
+  radial-gradient(circle at 10% 88%,rgba(214,170,84,.22),transparent 27%),
+  linear-gradient(145deg,#fffaf1,#efe2cd)}
+.landing:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(16,38,62,.07) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(#000,transparent 90%)}
+.landing-inner{width:min(1240px,100%);position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr);gap:clamp(28px,5vw,74px);align-items:center}
+.brandline{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.brand-orb{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;background:radial-gradient(circle at 30% 25%,#ffe798,var(--gold) 42%,#9c6827);box-shadow:inset -6px -7px 12px rgba(83,49,13,.24),0 10px 24px rgba(16,38,62,.18)}
+.landing h1{margin:30px 0 22px;max-width:760px;font:500 clamp(60px,8vw,118px)/.86 Georgia,"Times New Roman",serif;letter-spacing:-.06em}.landing h1 em{font-weight:500;color:var(--teal2)}
+.landing-copy{max-width:690px;margin:0;font-size:clamp(18px,1.7vw,24px);line-height:1.48;color:#405b71}
+.launch-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:30px}.primary-btn,.action-btn,.nav-btn{border:0;border-radius:999px;cursor:pointer;font-weight:900;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s}
+.primary-btn{padding:16px 23px;background:var(--navy);color:#fff;box-shadow:0 17px 36px rgba(12,32,56,.22)}.primary-btn:hover,.action-btn:hover,.nav-btn:hover{transform:translateY(-2px)}
+.launch-note{font-size:11px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:#61778a}
+.landing-art{position:relative;min-height:610px;display:grid;place-items:center}.landing-art:before,.landing-art:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(16,38,62,.09)}.landing-art:before{width:520px;height:520px;box-shadow:0 0 0 70px rgba(16,38,62,.025),0 0 0 140px rgba(16,38,62,.015)}.landing-art:after{width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,.7),transparent 70%);border:0}
+.hero-svg{position:relative;z-index:1;width:min(560px,98%);filter:drop-shadow(0 34px 28px rgba(12,32,56,.2));animation:heroFloat 3.2s ease-in-out infinite}.hero-chip{position:absolute;z-index:2;padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,250,241,.92);box-shadow:0 12px 26px rgba(12,32,56,.13);font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.hc1{left:0;top:19%;transform:rotate(-6deg)}.hc2{right:-1%;top:22%;transform:rotate(5deg)}.hc3{left:2%;bottom:13%;transform:rotate(4deg)}.hc4{right:0;bottom:11%;transform:rotate(-5deg)}
+@keyframes heroFloat{50%{transform:translateY(-14px) rotate(1deg)}}
 
-  #progress{position:fixed;z-index:3000;left:0;top:0;width:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--coral),var(--teal));box-shadow:0 0 18px rgba(228,185,88,.42)}
+/* EXPERIENCE */
+.experience{height:100dvh;min-height:0;background:var(--navy);padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom));display:grid;grid-template-rows:auto minmax(0,1fr);gap:12px}
+.app-header{min-height:62px;border:1px solid rgba(255,255,255,.14);border-radius:22px;background:rgba(255,255,255,.08);backdrop-filter:blur(16px);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:18px;padding:9px 12px 9px 15px;color:#fff}
+.app-brand{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:12px;font-weight:900;letter-spacing:.1em}.app-brand .brand-orb{width:36px;height:36px;font-size:12px}
+.chapter-head{text-align:center;min-width:0}.chapter-count{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.62);font-weight:850}.chapter-name{margin-top:3px;font-size:13px;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.header-actions{display:flex;gap:8px}.icon-btn{min-width:42px;height:42px;padding:0 12px;border:1px solid rgba(255,255,255,.17);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;font-size:12px;font-weight:850}
+.theatre{min-height:0;display:grid;grid-template-columns:minmax(0,1.44fr) minmax(330px,.56fr);gap:12px}
+.visual-shell{min-height:0;position:relative;overflow:hidden;border-radius:30px;background:linear-gradient(150deg,#cfe2dc,#a9ced3);box-shadow:var(--shadow);isolation:isolate}
+.visual-shell:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 18%,rgba(255,239,173,.52),transparent 28%),radial-gradient(circle at 14% 84%,rgba(255,255,255,.35),transparent 28%);pointer-events:none;z-index:1}
+.visual-shell:after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.23) 1px,transparent 1px);background-size:28px 28px;opacity:.35;pointer-events:none;z-index:1}
+.stage{position:absolute;inset:0;width:100%;height:100%;z-index:2;overflow:visible;touch-action:pan-y}
+.scene{opacity:0;visibility:hidden;transform:translateX(60px) scale(.97);transform-origin:center;transition:opacity .45s ease,transform .7s var(--ease),visibility 0s .7s}.scene.active{opacity:1;visibility:visible;transform:translateX(0) scale(1);transition-delay:0s}.scene.past{transform:translateX(-55px) scale(.97)}
+.hotspot{cursor:pointer;transform-box:fill-box;transform-origin:center;transition:transform .23s var(--ease),filter .23s,opacity .23s}.hotspot:hover{transform:translateY(-8px) scale(1.03)}.hotspot.next{animation:hotPulse 1.6s ease-in-out infinite;filter:url(#hotGlow)}.hotspot.done{animation:none;filter:none}.hotspot.done .status-dot{fill:var(--green)}
+@keyframes hotPulse{50%{transform:translateY(-8px) scale(1.045)}}
+#idea31{transform-box:fill-box;transform-origin:center;transition:transform .8s var(--ease);filter:url(#characterShadow);cursor:pointer}.idea-body{fill:url(#ideaBody);stroke:#fff7d8;stroke-width:8}.idea-line{fill:none;stroke:var(--navy);stroke-width:10;stroke-linecap:round}.idea-glove,.idea-shoe{fill:var(--paper);stroke:var(--navy);stroke-width:5}.idea-eye{fill:var(--navy)}.idea-tag{font-size:13px;font-weight:950;letter-spacing:2px;fill:#795518}.idea-mouth,.idea-brow{fill:none;stroke:var(--navy);stroke-width:6;stroke-linecap:round}.idea-spark{animation:spark 1.6s ease-in-out infinite}@keyframes spark{50%{opacity:.35;transform:scale(1.35)}}
+.interaction-banner{pointer-events:none;position:absolute;z-index:5;left:18px;bottom:18px;max-width:min(520px,calc(100% - 36px));display:flex;align-items:center;gap:10px;padding:10px 13px;border:1px solid rgba(255,255,255,.5);border-radius:999px;background:rgba(255,250,241,.88);backdrop-filter:blur(12px);box-shadow:0 12px 28px rgba(12,32,56,.14);font-size:11px;font-weight:800;color:#36546c}.pulse-dot{width:9px;height:9px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 7px rgba(221,115,95,.14);flex:0 0 auto}
+.toast{position:absolute;z-index:8;left:50%;top:18px;transform:translate(-50%,-12px);max-width:min(520px,calc(100% - 36px));padding:11px 15px;border-radius:999px;background:var(--navy);color:#fff;font-size:12px;font-weight:800;text-align:center;opacity:0;pointer-events:none;transition:opacity .2s,transform .3s var(--ease)}.toast.show{opacity:1;transform:translate(-50%,0)}
+.story-shell{min-height:0;border-radius:30px;background:linear-gradient(160deg,#fffaf1,#f0e1ca);box-shadow:var(--shadow);display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;overflow:hidden}
+.story-progress{display:flex;gap:7px;padding:22px 24px 0}.story-progress button{height:5px;flex:1;border:0;border-radius:99px;background:rgba(16,38,62,.14);padding:0;cursor:pointer;overflow:hidden}.story-progress button span{display:block;width:0;height:100%;background:var(--teal2);transition:width .35s}.story-progress button.past span,.story-progress button.active span{width:100%}.story-progress button.active{background:rgba(47,119,116,.25)}
+.story-content{min-height:0;overflow:auto;padding:clamp(22px,4vh,44px) clamp(22px,3vw,38px) 20px;scrollbar-width:thin}.kicker{font-size:10px;font-weight:950;letter-spacing:.17em;text-transform:uppercase;color:var(--coral)}.story-content h1{margin:14px 0 17px;font:500 clamp(42px,4.3vw,66px)/.92 Georgia,"Times New Roman",serif;letter-spacing:-.048em}.story-content>p{margin:0;font-size:15px;line-height:1.65;color:#405b71}.lesson{margin-top:22px;padding:15px 16px;border-left:4px solid var(--gold);border-radius:0 16px 16px 0;background:rgba(255,255,255,.56);font-size:12px;line-height:1.55;color:#355169}.lesson strong{color:var(--ink)}
+.task-block{margin-top:22px}.task-row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#667b8b}.task-track{height:8px;margin-top:9px;border-radius:999px;background:rgba(16,38,62,.12);overflow:hidden}.task-fill{height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--gold),var(--teal));transition:width .4s var(--ease)}
+.action-btn{width:auto;margin:0 18px 10px;padding:14px 18px;background:var(--navy);color:#fff;box-shadow:0 14px 30px rgba(12,32,56,.18)}.action-btn.done{background:var(--teal2)}.action-btn:disabled{cursor:default;transform:none;opacity:.94}
+.story-nav{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;padding:14px 18px 18px;border-top:1px solid var(--line);background:rgba(255,255,255,.28)}.nav-btn{min-width:122px;white-space:nowrap;padding:12px 16px;background:rgba(16,38,62,.08);color:var(--ink)}.nav-btn.next{justify-self:end;min-width:138px;background:var(--navy);color:#fff}.nav-btn:disabled{opacity:.35;cursor:not-allowed;transform:none}.nav-status{font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;color:#6a7e8e;white-space:nowrap}
 
-  .topbar{position:fixed;z-index:2500;top:max(14px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:min(1180px,calc(100vw - 24px));min-height:56px;padding:8px 9px 8px 16px;border:1px solid rgba(255,255,255,.32);border-radius:999px;background:rgba(255,250,240,.83);backdrop-filter:blur(18px) saturate(1.2);box-shadow:0 14px 36px rgba(11,29,50,.13);display:flex;align-items:center;justify-content:space-between;gap:14px}
-  .brand{display:flex;align-items:center;gap:10px;min-width:0;font-size:13px;font-weight:950;letter-spacing:.08em;white-space:nowrap}
-  .brand-mark{width:34px;height:34px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;color:#fff;background:radial-gradient(circle at 30% 25%,#fff2a5,var(--gold) 38%,#ae7226 76%);box-shadow:inset -5px -7px 11px rgba(83,48,6,.2),0 7px 18px rgba(11,29,50,.18)}
-  .chapter-status{display:flex;align-items:center;gap:9px;min-width:0;font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#5c7081}
-  .chapter-status i{width:8px;height:8px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 6px rgba(228,119,98,.12)}
-  .chapter-status span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .sound-btn{border:0;border-radius:999px;padding:10px 13px;background:var(--ink);color:#fff;font-size:11px;font-weight:900;cursor:pointer;white-space:nowrap}
+/* SCENE DETAILS */
+.clay{filter:url(#clayShadow)}.soft{filter:url(#softShadow)}.scene-label{font-size:15px;font-weight:950;letter-spacing:1px;fill:var(--navy)}.scene-mini{font-size:10px;font-weight:850;letter-spacing:.7px;fill:var(--navy)}
+.scan-beam{opacity:0;transition:opacity .3s,transform .5s var(--ease)}.hotspot.done .scan-beam{opacity:1}.clone-card.done{transform:translate(var(--tx),var(--ty)) scale(.15);opacity:0}.bridge-segment{stroke-dasharray:120;stroke-dashoffset:120;transition:stroke-dashoffset .55s var(--ease)}.hotspot.done .bridge-segment{stroke-dashoffset:0}.checkpoint.done .flag{fill:var(--green)}.checkpoint.done .flag-stem{stroke:var(--green)}.handoff-key{transition:transform .65s var(--ease)}.owner-done .handoff-key{transform:translateX(235px) rotate(360deg)}.district.done .district-light{fill:#ffe78e;filter:url(#hotGlow)}
 
-  /* HERO */
-  .hero{min-height:100svh;position:relative;display:grid;align-items:center;overflow:hidden;padding:110px max(24px,5vw) 64px;background:radial-gradient(circle at 85% 18%,rgba(185,223,229,.95),transparent 34%),radial-gradient(circle at 12% 86%,rgba(228,185,88,.24),transparent 28%),linear-gradient(160deg,#fffaf0 0%,#f1e2ca 100%)}
-  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(17,40,63,.08) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(to bottom,#000,transparent 78%);opacity:.5}
-  .hero-grid{position:relative;z-index:2;width:min(1220px,100%);margin:auto;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(420px,.98fr);gap:44px;align-items:center}
-  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:950;letter-spacing:.18em;text-transform:uppercase}.eyebrow::before{content:"";width:42px;height:2px;background:var(--gold)}
-  .hero h1{margin:28px 0 24px;font:500 clamp(62px,8.6vw,126px)/.82 Georgia,"Times New Roman",serif;letter-spacing:-.065em;max-width:780px}.hero h1 em{font-weight:500;color:var(--teal-dark)}
-  .hero-copy{max-width:680px;font-size:clamp(18px,1.7vw,25px);line-height:1.38;color:#425c70}
-  .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:30px}
-  .launch-btn{border:0;border-radius:999px;padding:15px 22px;background:var(--ink);color:#fff;font-weight:950;cursor:pointer;box-shadow:0 16px 34px rgba(11,29,50,.22);transition:transform .25s var(--ease),box-shadow .25s}
-  .launch-btn:hover{transform:translateY(-3px);box-shadow:0 20px 42px rgba(11,29,50,.26)}
-  .micro{font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#607587}
-  .hero-stage{position:relative;min-height:600px;display:grid;place-items:center}
-  .hero-ring{position:absolute;width:min(42vw,510px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(17,40,63,.1);box-shadow:0 0 0 70px rgba(17,40,63,.025),0 0 0 140px rgba(17,40,63,.016)}
-  .hero-cloud{position:absolute;width:78%;height:34%;bottom:5%;border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,255,.95),rgba(255,255,255,.18) 62%,transparent 70%);filter:blur(5px)}
-  .hero-character{width:min(520px,95%);height:auto;overflow:visible;filter:drop-shadow(0 35px 28px rgba(11,29,50,.2));animation:heroFloat 3.2s ease-in-out infinite;cursor:pointer}
-  .hero-character .arm-left{transform-origin:355px 300px;animation:wave 1.8s ease-in-out infinite}
-  .hero-character .spark{animation:spark 1.4s ease-in-out infinite;transform-origin:center}
-  .hero-character .spark.s2{animation-delay:.25s}.hero-character .spark.s3{animation-delay:.55s}
-  .hero-badge{position:absolute;padding:11px 15px;border:1px solid var(--line);border-radius:18px;background:rgba(255,250,240,.9);box-shadow:0 16px 38px rgba(11,29,50,.13);font-size:11px;font-weight:950;letter-spacing:.06em;text-transform:uppercase;animation:badgeFloat 4s ease-in-out infinite}
-  .hb1{left:-1%;top:12%;transform:rotate(-7deg)}.hb2{right:-2%;top:14%;transform:rotate(7deg);animation-delay:.8s}.hb3{left:-2%;bottom:5%;transform:rotate(5deg);animation-delay:1.5s}.hb4{right:-3%;bottom:4%;transform:rotate(-5deg);animation-delay:2.1s}
-  @keyframes heroFloat{50%{transform:translateY(-15px) rotate(1deg)}}
-  @keyframes wave{0%,100%{transform:rotate(0)}50%{transform:rotate(-18deg)}}
-  @keyframes spark{50%{transform:scale(1.45);opacity:.48}}
-  @keyframes badgeFloat{50%{translate:0 -12px}}
 
-  /* JOURNEY LAYOUT — protected text zone + protected graphic zone */
-  .journey{position:relative;background:#cbe2e2}
-  .experience{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:minmax(330px,36%) minmax(0,64%);overflow:hidden;background:var(--paper);isolation:isolate}
-  .narrative{position:relative;z-index:30;min-width:0;height:100%;padding:100px clamp(24px,4vw,58px) 70px;background:linear-gradient(155deg,#fffaf0 0%,#f3e6d3 100%);border-right:1px solid var(--line);overflow:hidden}
-  .narrative::after{content:"";position:absolute;right:-80px;top:0;width:130px;height:100%;background:linear-gradient(90deg,rgba(11,29,50,.06),transparent);pointer-events:none}
-  .chapter-panel{position:absolute;inset:94px clamp(24px,4vw,58px) 72px;display:flex;flex-direction:column;justify-content:center;opacity:0;visibility:hidden;transform:translateY(26px);transition:opacity .42s ease,transform .55s var(--ease),visibility 0s .55s;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}
-  .chapter-panel.active{opacity:1;visibility:visible;transform:translateY(0);transition-delay:0s}
-  .chapter-kicker{font-size:10px;font-weight:950;letter-spacing:.18em;text-transform:uppercase;color:var(--coral)}
-  .chapter-panel h2{margin:14px 0 17px;font:500 clamp(40px,4vw,66px)/.92 Georgia,"Times New Roman",serif;letter-spacing:-.05em}
-  .chapter-panel p{margin:0;max-width:520px;font-size:15px;line-height:1.62;color:#435d71}
-  .scene-lesson{margin-top:17px;padding:13px 14px;border-left:4px solid var(--gold);border-radius:0 14px 14px 0;background:rgba(255,255,255,.48);font-size:12px;line-height:1.5;font-weight:780;color:#334f65}
-  .scene-action{align-self:flex-start;margin-top:20px;border:0;border-radius:999px;padding:13px 17px;background:var(--ink);color:#fff;font-size:12px;font-weight:950;cursor:pointer;box-shadow:0 13px 28px rgba(11,29,50,.17);transition:transform .2s var(--ease),background .2s}
-  .scene-action:hover{transform:translateY(-2px)}.scene-action.done{background:var(--teal-dark)}
-  .interaction-note{display:flex;align-items:center;gap:9px;margin-top:12px;font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#687b8a}.interaction-note i{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 1.4s infinite}
-  @keyframes pulse{50%{transform:scale(1.7);opacity:.45}}
-  .mini-progress{margin-top:16px;display:none;gap:6px}.mini-progress.visible{display:flex}.mini-progress span{height:8px;flex:1;border-radius:999px;background:rgba(17,40,63,.12);transition:background .3s,transform .3s}.mini-progress span.on{background:var(--teal);transform:translateY(-2px)}
-
-  .visual-stage{position:relative;min-width:0;height:100%;overflow:hidden;background:linear-gradient(180deg,#b9dfe5 0%,#dce9df 66%,#b8c8a9 100%)}
-  .visual-stage::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 18%,rgba(255,231,151,.6),transparent 25%),radial-gradient(circle at 20% 76%,rgba(255,255,255,.28),transparent 32%);pointer-events:none}
-  .stage-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-  .scene-world{opacity:0;transform:translateX(70px) scale(.97);transform-origin:500px 400px;transition:opacity .55s ease,transform .72s var(--ease);pointer-events:none}
-  .scene-world.active{opacity:1;transform:translateX(0) scale(1);pointer-events:auto}
-  .scene-world.past{opacity:0;transform:translateX(-70px) scale(.97)}
-  .clay{filter:url(#clayShadow)}
-  .soft{filter:url(#softShadow)}
-  .scene-sign{font:900 15px Inter,system-ui,sans-serif;letter-spacing:.09em;fill:#11283f}
-  .scene-small{font:850 11px Inter,system-ui,sans-serif;letter-spacing:.06em;fill:#11283f}
-
-  /* Idea 31 persistent character */
-  #idea31{transform-origin:center;transition:transform .75s var(--ease);cursor:pointer;filter:url(#characterShadow)}
-  #idea31 .body{fill:url(#ideaBody);stroke:#fff7d6;stroke-width:7}
-  #idea31 .eye{fill:#11283f;transform-origin:center}
-  #idea31 .brow,#idea31 .mouth{fill:none;stroke:#11283f;stroke-width:5;stroke-linecap:round}
-  #idea31 .arm,#idea31 .leg{fill:none;stroke:#11283f;stroke-width:9;stroke-linecap:round}
-  #idea31 .glove,#idea31 .shoe{fill:#fffaf0;stroke:#11283f;stroke-width:4}
-  #idea31 .tag{font:950 13px Inter,system-ui,sans-serif;letter-spacing:.12em;fill:#7a5214}
-  #idea31 .flame{opacity:0;transform-origin:center;animation:flame .35s ease-in-out infinite alternate}
-  #idea31 .character-spark{opacity:0}
-  #idea31.rocket .flame{opacity:1}
-  #idea31.celebrate .arm-left{animation:celebrateLeft .55s ease-in-out infinite alternate;transform-origin:430px 422px}
-  #idea31.celebrate .arm-right{animation:celebrateRight .55s ease-in-out infinite alternate;transform-origin:570px 422px}
-  @keyframes flame{to{transform:scaleY(1.28)}}
-  @keyframes celebrateLeft{to{transform:rotate(-22deg)}}
-  @keyframes celebrateRight{to{transform:rotate(22deg)}}
-
-  .scene-map{position:absolute;z-index:50;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid rgba(17,40,63,.12);border-radius:999px;background:rgba(255,250,240,.78);backdrop-filter:blur(12px);box-shadow:0 10px 26px rgba(11,29,50,.12)}
-  .scene-map button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:rgba(17,40,63,.2);cursor:pointer;transition:width .25s,background .25s}.scene-map button.active{width:28px;border-radius:999px;background:var(--ink)}
-  .stage-tip{position:absolute;z-index:45;right:18px;top:88px;max-width:230px;padding:10px 12px;border:1px solid rgba(17,40,63,.12);border-radius:14px;background:rgba(255,250,240,.75);backdrop-filter:blur(10px);font-size:10px;line-height:1.45;font-weight:800;color:#496175;opacity:.9}
-  .toast{position:absolute;z-index:100;left:50%;bottom:64px;transform:translate(-50%,20px);max-width:min(470px,calc(100% - 30px));padding:12px 15px;border-radius:999px;background:var(--ink);color:#fff;font-size:11px;font-weight:850;text-align:center;opacity:0;pointer-events:none;transition:opacity .25s,transform .35s var(--ease)}.toast.show{opacity:1;transform:translate(-50%,0)}
-
-  .chapter-track{position:relative;z-index:1}.scroll-step{height:112svh}
-
-  /* Scene action states */
-  #world0 .note{transition:transform .75s var(--ease),opacity .5s}.stage-state.action-0 #world0 .note:nth-of-type(1){transform:translate(-90px,-110px) rotate(-22deg)}.stage-state.action-0 #world0 .note:nth-of-type(2){transform:translate(40px,-140px) rotate(16deg)}.stage-state.action-0 #world0 .note:nth-of-type(3){transform:translate(130px,-70px) rotate(22deg)}.stage-state.action-0 #world0 .note:nth-of-type(4){transform:translate(50px,100px) rotate(-14deg)}
-  .burst-ray{opacity:0;transform-origin:center}.stage-state.action-0 #world0 .burst-ray{opacity:1;animation:burst .65s var(--ease) both}.stage-state.action-0 #world0 .burst-ray:nth-child(2){animation-delay:.08s}.stage-state.action-0 #world0 .burst-ray:nth-child(3){animation-delay:.15s}@keyframes burst{0%{transform:scale(.3);opacity:0}50%{opacity:1}100%{transform:scale(1.18);opacity:0}}
-
-  #world1 .scan-line{opacity:0}.stage-state.action-1 #world1 .scan-line{opacity:1;animation:scan 1.7s ease-in-out 2}.check-dot{fill:#d6c9b2;transition:fill .3s,transform .3s;transform-origin:center}.stage-state.action-1 #world1 .check-dot{fill:var(--green);transform:scale(1.15)}@keyframes scan{0%{transform:translateY(-140px)}50%{transform:translateY(160px)}100%{transform:translateY(-140px)}}
-
-  #world2 .clone{transition:transform .9s var(--ease),opacity .5s}.stage-state.action-2 #world2 .clone-a{transform:translate(190px,30px) scale(.42);opacity:.15}.stage-state.action-2 #world2 .clone-b{transform:translate(0,30px) scale(.42);opacity:.15}.stage-state.action-2 #world2 .clone-c{transform:translate(-190px,30px) scale(.42);opacity:.15}.merge-core{transition:transform .8s var(--ease),filter .5s}.stage-state.action-2 #world2 .merge-core{transform:scale(1.2);filter:url(#glow)}
-
-  .bridge-piece{opacity:.16;transform:translateY(34px);transition:opacity .45s,transform .65s var(--ease)}.stage-state.action-3 #world3 .bridge-piece{opacity:1;transform:translateY(0)}.stage-state.action-3 #world3 .bridge-piece:nth-child(2){transition-delay:.08s}.stage-state.action-3 #world3 .bridge-piece:nth-child(3){transition-delay:.16s}.stage-state.action-3 #world3 .bridge-piece:nth-child(4){transition-delay:.24s}.dependency-beam{stroke-dasharray:12 14;stroke-dashoffset:220;opacity:0}.stage-state.action-3 #world3 .dependency-beam{opacity:1;animation:beam 1.1s ease forwards}@keyframes beam{to{stroke-dashoffset:0}}
-
-  #world4 .criterion-flag{opacity:.25;transition:opacity .25s,transform .35s var(--ease)}#world4 .criterion-flag.on{opacity:1;transform:translateY(-8px)}
-  #world4 .summit-glow{opacity:.15;transition:opacity .4s}.stage-state.action-4-complete #world4 .summit-glow{opacity:1;animation:summitPulse 1.2s ease-in-out infinite}@keyframes summitPulse{50%{transform:scale(1.08);opacity:.58}}
-
-  #world5 .handoff-line{stroke-dasharray:16 14;stroke-dashoffset:260;opacity:.18}.stage-state.action-5 #world5 .handoff-line{opacity:1;animation:beam 1.2s ease forwards}.stage-state.action-5 #world5 .owner-badge{animation:ownerPop .7s var(--ease) both}@keyframes ownerPop{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
-
-  #world6 .city-light{fill:#334759;transition:fill .4s,filter .4s}.stage-state.action-6 #world6 .city-light{fill:#ffe68e;filter:url(#glow)}#world6 .city-link{stroke-dasharray:14 14;stroke-dashoffset:300;opacity:.18}.stage-state.action-6 #world6 .city-link{opacity:.9;animation:beam 1.25s ease forwards}.firework{opacity:0;transform-origin:center}.stage-state.action-6 #world6 .firework{opacity:1;animation:firework 1.2s ease-out infinite}.stage-state.action-6 #world6 .firework.f2{animation-delay:.35s}.stage-state.action-6 #world6 .firework.f3{animation-delay:.7s}@keyframes firework{0%{transform:scale(.15);opacity:0}35%{opacity:1}100%{transform:scale(1.25);opacity:0}}
-
-  /* Closing */
-  .interlude{min-height:70svh;display:grid;place-items:center;padding:80px 24px;background:var(--navy);color:#fff;text-align:center}.interlude blockquote{margin:0;max-width:1000px;font:500 clamp(46px,7vw,100px)/.96 Georgia,"Times New Roman",serif;letter-spacing:-.05em}.interlude em{display:block;color:#ffd781;font-weight:500}
-  .finale{padding:110px 24px;background:linear-gradient(160deg,#fffaf0,#eadbc5)}.final-wrap{width:min(1120px,100%);margin:auto}.finale h2{margin:24px 0 20px;max-width:980px;font:500 clamp(52px,7vw,104px)/.9 Georgia,"Times New Roman",serif;letter-spacing:-.055em}.finale h2 em{font-weight:500;color:var(--teal-dark)}.finale>div>p{max-width:760px;font-size:18px;line-height:1.6;color:#445d71}.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:42px}.role{padding:24px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.5)}.role.primary{background:var(--ink);color:#fff}.role b{font-size:16px}.role p{margin:9px 0 0;font-size:13px;line-height:1.55;color:inherit;opacity:.84}.replay{margin-top:30px;border:0;border-radius:999px;padding:14px 18px;background:var(--ink);color:#fff;font-weight:950;cursor:pointer}
-  footer{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:20px 24px;background:#071524;color:rgba(255,255,255,.75);font-size:10px;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
-
-  @media(max-width:980px){
-    .hero-grid{grid-template-columns:1fr;text-align:center}.hero-copy{margin:auto}.eyebrow{justify-content:center}.hero-actions{justify-content:center}.hero-stage{min-height:490px}.hb1{left:4%}.hb2{right:4%}
-    .experience{grid-template-columns:42% 58%}.narrative{padding-left:24px;padding-right:24px}.chapter-panel{left:24px;right:24px}.chapter-panel h2{font-size:clamp(36px,5vw,52px)}.stage-tip{display:none}
-  }
-
-  @media(max-width:720px){
-    .topbar{top:max(8px,env(safe-area-inset-top));min-height:50px;padding-left:11px}.brand{font-size:11px}.brand-mark{width:30px;height:30px}.sound-btn{padding:9px 11px}.chapter-status{display:none}
-    .hero{padding:90px 18px 44px}.hero h1{font-size:clamp(54px,17vw,88px)}.hero-copy{font-size:17px}.hero-stage{min-height:420px}.hero-badge{font-size:9px;padding:9px 11px}.hb1{top:12%}.hb2{top:19%}.hb3{bottom:13%}.hb4{bottom:8%}
-    .experience{grid-template-columns:1fr;grid-template-rows:48svh 52svh}.visual-stage{grid-row:1}.narrative{grid-row:2;padding:0;border-right:0;border-top:1px solid var(--line);overflow:hidden}.narrative::after{display:none}.chapter-panel{inset:14px 18px max(44px,env(safe-area-inset-bottom));justify-content:flex-start;padding-top:2px}.chapter-kicker{font-size:9px}.chapter-panel h2{font-size:clamp(34px,10vw,48px);line-height:.92;margin:9px 0 10px}.chapter-panel p{font-size:13px;line-height:1.5}.scene-lesson{margin-top:10px;padding:9px 10px;font-size:11px}.scene-action{margin-top:11px;padding:11px 14px}.interaction-note{display:none}.mini-progress{margin-top:10px}.scene-map{bottom:8px}.stage-svg{transform:scale(1.06);transform-origin:center}.toast{bottom:38px;border-radius:16px}.scroll-step{height:118svh}
-    .roles{grid-template-columns:1fr}.finale{padding:80px 20px}.interlude{min-height:58svh}
-  }
-
-  @media(max-width:400px){
-    .brand span:last-child{display:none}.hero-stage{min-height:370px}.hero-badge{display:none}.experience{grid-template-rows:43svh 57svh}.chapter-panel h2{font-size:34px}.chapter-panel p{font-size:12.5px}.scene-lesson{font-size:10.5px}.stage-svg{transform:scale(1.12)}
-  }
-
-  @media(max-height:680px) and (min-width:721px){
-    .chapter-panel{inset:82px 28px 44px}.chapter-panel h2{font-size:40px;margin:10px 0}.chapter-panel p{font-size:13px;line-height:1.45}.scene-lesson{margin-top:10px}.scene-action{margin-top:12px}
-  }
-
-  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.final-overlay{position:fixed;z-index:50;inset:0;display:grid;place-items:center;padding:24px;overflow:auto;background:rgba(7,24,42,.86);backdrop-filter:blur(18px)}
+.final-card{width:min(900px,100%);max-height:calc(100dvh - 32px);overflow:auto;padding:clamp(30px,6vw,72px);border:1px solid rgba(255,255,255,.18);border-radius:36px;background:radial-gradient(circle at 85% 10%,rgba(79,157,152,.28),transparent 32%),linear-gradient(145deg,#173a59,#0c2038);color:#fff;box-shadow:0 34px 90px rgba(0,0,0,.35);text-align:center}
+.final-orb{width:92px;height:92px;margin:0 auto 24px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,#ffe99b,var(--gold) 44%,#956025);font-size:28px;font-weight:950;box-shadow:0 0 0 14px rgba(214,170,84,.09),0 22px 44px rgba(0,0,0,.26);animation:heroFloat 3s ease-in-out infinite}
+.final-card .kicker{color:#f0c66c}.final-card h2{margin:16px auto 18px;max-width:760px;font:500 clamp(46px,7vw,88px)/.9 Georgia,"Times New Roman",serif;letter-spacing:-.055em}.final-card p{max-width:680px;margin:0 auto;color:rgba(255,255,255,.76);font-size:17px;line-height:1.6}.final-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}.final-actions button{border:0;border-radius:999px;padding:14px 20px;font-weight:900;cursor:pointer}.final-actions .again{background:var(--gold);color:var(--navy)}.final-actions .back{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.18)}
+/* RESPONSIVE */
+@media(max-width:1050px){
+  .landing-inner{grid-template-columns:1fr}.landing-art{min-height:480px}.hero-chip{display:none}.landing h1{max-width:900px}.theatre{grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr)}
+}
+@media(max-width:760px){
+  body{background:var(--navy)}
+  .landing{padding:24px 18px 34px;overflow:visible}.landing-inner{gap:18px}.brandline{font-size:10px}.brand-orb{width:36px;height:36px}.landing h1{margin:22px 0 16px;font-size:clamp(52px,16vw,78px);line-height:.89}.landing-copy{font-size:16px}.launch-row{margin-top:22px}.landing-art{min-height:350px}.landing-art:before{width:330px;height:330px;box-shadow:0 0 0 48px rgba(16,38,62,.025)}.hero-svg{width:min(390px,100%)}
+  .experience{min-height:100dvh;padding:8px;grid-template-rows:auto minmax(0,1fr)}.app-header{min-height:54px;border-radius:18px;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;padding:7px 8px}.app-brand span:last-child{display:none}.app-brand .brand-orb{width:34px;height:34px}.chapter-name{font-size:11px}.chapter-count{font-size:8px}.icon-btn{min-width:38px;height:38px;padding:0 9px;font-size:0}#restartBtn:after{content:"↺";font-size:17px}#soundBtn:after{content:"♪";font-size:15px}
+  .theatre{grid-template-columns:1fr;grid-template-rows:minmax(260px,45%) minmax(0,55%);gap:8px}.final-overlay{padding:12px}.final-card{padding:26px 20px;border-radius:26px}.final-orb{width:70px;height:70px;margin-bottom:18px;font-size:22px}.final-card h2{font-size:clamp(40px,12vw,58px);margin:12px auto 15px}.final-card p{font-size:14px}.final-actions{margin-top:22px;gap:9px}.final-actions button{width:100%;padding:12px 16px}.visual-shell,.story-shell{border-radius:22px}.visual-shell{min-height:0}.interaction-banner{left:10px;right:10px;bottom:10px;max-width:none;border-radius:14px;font-size:10px;padding:9px 10px}.toast{top:10px;border-radius:14px;font-size:10px}.story-shell{min-height:0}.story-progress{padding:14px 16px 0}.story-content{padding:18px 18px 14px}.story-content h1{font-size:clamp(34px,9.8vw,46px);margin:10px 0 11px}.story-content>p{font-size:13px;line-height:1.52}.lesson{margin-top:12px;padding:10px 11px;font-size:11px}.task-block{margin-top:12px}.action-btn{margin:0 12px 8px;padding:12px 14px;font-size:13px}.story-nav{padding:10px 12px 12px}.nav-btn{padding:10px 12px;font-size:12px}.nav-status{font-size:9px}.stage{transform:scale(1.03);transform-origin:center}
+}
+@media(max-width:390px){.theatre{grid-template-rows:minmax(235px,42%) minmax(0,58%)}.story-content h1{font-size:32px}.story-content>p{font-size:12.5px}.lesson{font-size:10.5px}.nav-status{display:none}.story-nav{grid-template-columns:1fr 1fr}.nav-btn{width:100%;min-width:0}.nav-btn.next{grid-column:2;min-width:0}.visual-shell{min-height:0}}
+@media(max-height:700px) and (min-width:761px){.story-content{padding-top:22px}.story-content h1{font-size:45px}.lesson,.task-block{margin-top:14px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<div id="progress" aria-hidden="true"></div>
-<header class="topbar">
-  <div class="brand"><span class="brand-mark">31</span><span>HOME31 · IDEA JOURNEY</span></div>
-  <div class="chapter-status"><i></i><span id="chapterReadout">Prologue · Meet Idea 31</span></div>
-  <button class="sound-btn" id="soundToggle" type="button" aria-pressed="false">Sound off</button>
-</header>
-
-<main>
-  <section class="hero" id="hero">
-    <div class="hero-grid">
-      <div>
-        <div class="eyebrow">An original interactive HOME31 story</div>
-        <h1>Meet the idea that thought it was <em>already approved.</em></h1>
-        <p class="hero-copy">Idea 31 leaves the retreat full of confidence. Then reality arrives—with questions, duplicates, dependencies, costs, owners and a very large mountain.</p>
-        <div class="hero-actions">
-          <button class="launch-btn" id="launch" type="button">Launch Idea 31 →</button>
-          <span class="micro">Scroll, click and help it survive</span>
-        </div>
-      </div>
-      <div class="hero-stage" aria-label="Idea 31, an energetic strategic proposal character">
-        <div class="hero-ring"></div><div class="hero-cloud"></div>
-        <span class="hero-badge hb1">100% confident</span><span class="hero-badge hb2">0% cost estimate</span><span class="hero-badge hb3">Owner: “TBC”</span><span class="hero-badge hb4">Go-live: yesterday</span>
-        <svg class="hero-character" viewBox="0 0 700 650" role="img" aria-label="Idea 31 character bursting with energy">
-          <defs>
-            <linearGradient id="heroBody" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff5a8"/><stop offset=".55" stop-color="#f2cf5d"/><stop offset="1" stop-color="#c98c2d"/></linearGradient>
-            <filter id="heroShadow"><feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#0b1d32" flood-opacity=".22"/></filter>
-          </defs>
-          <g filter="url(#heroShadow)">
-            <g class="spark s1" fill="#e47762"><path d="M110 140l13 28 30 4-22 21 6 30-27-15-27 15 6-30-22-21 30-4z"/></g>
-            <g class="spark s2" fill="#52a99a"><path d="M590 105l10 21 23 3-17 16 4 23-20-11-21 11 4-23-17-16 24-3z"/></g>
-            <g class="spark s3" fill="#947fc0"><circle cx="610" cy="470" r="18"/><circle cx="638" cy="445" r="8"/></g>
-            <path d="M230 455Q175 510 142 565" fill="none" stroke="#11283f" stroke-width="14" stroke-linecap="round"/>
-            <ellipse cx="130" cy="578" rx="44" ry="25" fill="#fffaf0" stroke="#11283f" stroke-width="6"/>
-            <path d="M463 455Q520 505 553 565" fill="none" stroke="#11283f" stroke-width="14" stroke-linecap="round"/>
-            <ellipse cx="567" cy="578" rx="44" ry="25" fill="#fffaf0" stroke="#11283f" stroke-width="6"/>
-            <g class="arm-left"><path d="M226 300Q155 280 116 212" fill="none" stroke="#11283f" stroke-width="15" stroke-linecap="round"/><circle cx="105" cy="196" r="28" fill="#fffaf0" stroke="#11283f" stroke-width="6"/></g>
-            <path d="M470 306Q542 289 585 234" fill="none" stroke="#11283f" stroke-width="15" stroke-linecap="round"/><circle cx="598" cy="219" r="28" fill="#fffaf0" stroke="#11283f" stroke-width="6"/>
-            <rect x="205" y="180" width="290" height="286" rx="80" fill="url(#heroBody)" stroke="#fff8d7" stroke-width="12"/>
-            <path d="M245 202Q300 150 365 170Q427 141 472 205" fill="#fff1a0" opacity=".62"/>
-            <text x="350" y="250" text-anchor="middle" font-size="28" font-weight="950" fill="#805617" letter-spacing="4">IDEA 31</text>
-            <path d="M275 299q25-20 50 0M375 299q25-20 50 0" fill="none" stroke="#11283f" stroke-width="8" stroke-linecap="round"/>
-            <circle cx="300" cy="330" r="13" fill="#11283f"/><circle cx="400" cy="330" r="13" fill="#11283f"/>
-            <circle cx="295" cy="325" r="4" fill="#fff"/><circle cx="395" cy="325" r="4" fill="#fff"/>
-            <path d="M298 385Q350 430 404 383" fill="#fffaf0" stroke="#11283f" stroke-width="8" stroke-linejoin="round"/>
-            <path d="M325 402Q350 418 377 401" fill="#e47762"/>
-            <path d="M240 175L205 110M463 178L500 105" stroke="#11283f" stroke-width="12" stroke-linecap="round"/><circle cx="200" cy="98" r="20" fill="#e47762"/><circle cx="505" cy="94" r="20" fill="#52a99a"/>
-          </g>
-        </svg>
-      </div>
+<section class="landing" id="landing">
+  <div class="landing-inner">
+    <div>
+      <div class="brandline"><span class="brand-orb">31</span><span>HOME31 · An interactive strategy story</span></div>
+      <h1>One idea enters.<br><em>A portfolio emerges.</em></h1>
+      <p class="landing-copy">Follow Idea 31 from the final retreat slide to a real place in the HOME31 portfolio. It will meet evidence, duplicates, dependencies, priorities and—eventually—an accountable owner.</p>
+      <div class="launch-row"><button class="primary-btn" id="startBtn" type="button">Begin the journey →</button><span class="launch-note">Seven chapters · meaningful interactions · no reading maze</span></div>
     </div>
-  </section>
-
-  <section class="journey" id="journey">
-    <div class="experience">
-      <aside class="narrative" aria-live="polite">
-        <article class="chapter-panel active" data-panel="0">
-          <div class="chapter-kicker">Chapter 01 · The Great Escape</div>
-          <h2>The slides close. The ideas explode.</h2>
-          <p>The retreat ends, but every proposal leaves the room convinced it deserves immediate attention. Idea 31 is the loudest.</p>
-          <div class="scene-lesson"><strong>Reality check:</strong> A proposal is only an input. It is not yet an approved initiative or portfolio priority.</div>
-          <button class="scene-action" type="button" data-action="0">Detonate the idea wall</button>
-          <div class="interaction-note"><i></i>Give Idea 31 its dramatic entrance</div>
-        </article>
-        <article class="chapter-panel" data-panel="1">
-          <div class="chapter-kicker">Chapter 02 · The Truth Machine</div>
-          <h2>Confidence enters. Evidence comes out.</h2>
-          <p>The Initiative Scanner checks the strategic problem, HOME31 alignment, owner, outcome, cost, timeline, dependencies, risks and KPI.</p>
-          <div class="scene-lesson"><strong>The test:</strong> If the initiative cannot be described consistently, it is not ready to compete for resources.</div>
-          <button class="scene-action" type="button" data-action="1">Run the full scan</button>
-          <div class="interaction-note"><i></i>Watch every missing identity field appear</div>
-        </article>
-        <article class="chapter-panel" data-panel="2">
-          <div class="chapter-kicker">Chapter 03 · Attack of the Clones</div>
-          <h2>Idea 31 discovers its “unique” cousins.</h2>
-          <p>Three teams have proposed an AI assistant, two dashboards and another shared platform. Different names do not always mean different capabilities.</p>
-          <div class="scene-lesson"><strong>Enterprise move:</strong> Consolidate the capability, preserve valid business needs and avoid multiplying cost and complexity.</div>
-          <button class="scene-action" type="button" data-action="2">Merge the clones</button>
-          <div class="interaction-note"><i></i>Turn three proposals into one enterprise capability</div>
-        </article>
-        <article class="chapter-panel" data-panel="3">
-          <div class="chapter-kicker">Chapter 04 · The Impossible Bridge</div>
-          <h2>No dependency. No crossing.</h2>
-          <p>Finance, ICT, Data, HR, Legal and Risk each hold a part of the bridge. Idea 31 cannot simply jump over architecture, affordability or governance.</p>
-          <div class="scene-lesson"><strong>Sequence before speed:</strong> Shared systems, policy decisions, people, data and approvals determine what can move first.</div>
-          <button class="scene-action" type="button" data-action="3">Build the dependency bridge</button>
-          <div class="interaction-note"><i></i>Connect every enabling function</div>
-        </article>
-        <article class="chapter-panel" data-panel="4">
-          <div class="chapter-kicker">Chapter 05 · Priority Mountain</div>
-          <h2>Urgency shouts. Priority must prove itself.</h2>
-          <p>Idea 31 must climb through mandate, strategic contribution, impact, affordability and readiness before it earns a place in the portfolio.</p>
-          <div class="scene-lesson"><strong>No shortcut:</strong> An exciting proposal may still wait if the owner, business case, resources or dependencies are not ready.</div>
-          <button class="scene-action" type="button" data-action="4">Climb: Mandate</button>
-          <div class="mini-progress" data-climb><span></span><span></span><span></span><span></span><span></span></div>
-        </article>
-        <article class="chapter-panel" data-panel="5">
-          <div class="chapter-kicker">Chapter 06 · The Ownership Handoff</div>
-          <h2>CPS guides the journey. It does not inherit the idea.</h2>
-          <p>CPS structures, connects, coordinates and aligns the enterprise view. The accountable division must accept the outcome, mobilise resources and deliver.</p>
-          <div class="scene-lesson"><strong>Clear line:</strong> Facilitation remains with CPS; decision, ownership, accountability and execution remain with the respective owners.</div>
-          <button class="scene-action" type="button" data-action="5">Complete the handoff</button>
-          <div class="interaction-note"><i></i>Move Idea 31 to its accountable home</div>
-        </article>
-        <article class="chapter-panel" data-panel="6">
-          <div class="chapter-kicker">Chapter 07 · HOME31 Ignition</div>
-          <h2>One idea. One place. One connected portfolio.</h2>
-          <p>Idea 31 finally becomes part of a funded, sequenced, accountable and measurable enterprise programme—not another isolated project.</p>
-          <div class="scene-lesson"><strong>The destination:</strong> One enterprise view of priorities, programmes, owners, costs, dependencies, timing and outcomes.</div>
-          <button class="scene-action" type="button" data-action="6">Ignite the HOME31 city</button>
-          <div class="interaction-note"><i></i>Light the programmes and their connections</div>
-        </article>
-      </aside>
-
-      <div class="visual-stage stage-state" id="visualStage">
-        <div class="stage-tip" id="stageTip">The graphic has its own protected space. No story wording will cover the character or scenery.</div>
-        <svg class="stage-svg" viewBox="0 0 1000 800" role="img" aria-labelledby="stageTitle stageDesc" preserveAspectRatio="xMidYMid meet">
-          <title id="stageTitle">The interactive journey of Idea 31</title>
-          <desc id="stageDesc">Idea 31 travels from the retreat room through initiative validation, consolidation, dependency mapping, prioritisation, ownership and the HOME31 enterprise portfolio.</desc>
-          <defs>
-            <linearGradient id="ideaBody" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff4a8"/><stop offset=".55" stop-color="#f0ce5e"/><stop offset="1" stop-color="#c88b2c"/></linearGradient>
-            <linearGradient id="glassBlue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e9fbff"/><stop offset="1" stop-color="#82c9d5"/></linearGradient>
-            <linearGradient id="citySky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#102d49"/><stop offset="1" stop-color="#1d4c65"/></linearGradient>
-            <filter id="clayShadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="15" stdDeviation="12" flood-color="#0b1d32" flood-opacity=".2"/></filter>
-            <filter id="softShadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0b1d32" flood-opacity=".14"/></filter>
-            <filter id="characterShadow" x="-60%" y="-60%" width="220%" height="240%"><feDropShadow dx="0" dy="18" stdDeviation="13" flood-color="#0b1d32" flood-opacity=".28"/></filter>
-            <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          </defs>
-
-          <!-- WORLD 1: retreat explosion -->
-          <g class="scene-world active" id="world0">
-            <ellipse cx="505" cy="675" rx="430" ry="95" fill="#b9cba8"/>
-            <g class="clay"><rect x="116" y="138" width="768" height="430" rx="55" fill="#f7e7cd"/><rect x="172" y="205" width="656" height="210" rx="34" fill="#e1c5a0"/><ellipse cx="500" cy="485" rx="300" ry="55" fill="#ba8155"/><rect x="480" y="480" width="40" height="150" rx="20" fill="#8b5b3f"/></g>
-            <g transform="translate(248 225)">
-              <g class="note"><rect width="140" height="94" rx="17" fill="#f5d975"/><text x="70" y="42" text-anchor="middle" class="scene-sign">AI FOR ALL</text><text x="70" y="64" text-anchor="middle" class="scene-small">GO LIVE NOW</text></g>
-              <g class="note" transform="translate(164 8)"><rect width="150" height="96" rx="17" fill="#b7ddd5"/><text x="75" y="43" text-anchor="middle" class="scene-sign">DASHBOARD</text><text x="75" y="65" text-anchor="middle" class="scene-small">OWNER: TBC</text></g>
-              <g class="note" transform="translate(340 -4)"><rect width="142" height="94" rx="17" fill="#efb5a7"/><text x="71" y="42" text-anchor="middle" class="scene-sign">PLATFORM</text><text x="71" y="64" text-anchor="middle" class="scene-small">COST: LATER</text></g>
-              <g class="note" transform="translate(506 12)"><rect width="142" height="92" rx="17" fill="#cfc1df"/><text x="71" y="40" text-anchor="middle" class="scene-sign">URGENT!</text><text x="71" y="62" text-anchor="middle" class="scene-small">WHY? YES.</text></g>
-            </g>
-            <g transform="translate(500 390)" fill="none" stroke-linecap="round">
-              <path class="burst-ray" d="M0-40V-145" stroke="#e47762" stroke-width="11"/><path class="burst-ray" d="M35-25L130-95" stroke="#52a99a" stroke-width="11"/><path class="burst-ray" d="M-35-25L-130-95" stroke="#947fc0" stroke-width="11"/>
-            </g>
-            <g class="soft" transform="translate(780 445)"><rect width="96" height="72" rx="24" fill="#fffaf0"/><path d="M96 18q52 0 38 40q-10 28-38 16" fill="none" stroke="#fffaf0" stroke-width="17"/><text x="48" y="44" text-anchor="middle" font-size="17">☕</text></g>
-          </g>
-
-          <!-- WORLD 2: scanner -->
-          <g class="scene-world" id="world1">
-            <ellipse cx="500" cy="675" rx="430" ry="100" fill="#a9c7bd"/>
-            <g class="clay"><rect x="175" y="100" width="650" height="530" rx="78" fill="#d9eef1"/><rect x="265" y="155" width="470" height="365" rx="54" fill="url(#glassBlue)" stroke="#fff" stroke-width="10"/><rect x="345" y="545" width="310" height="65" rx="25" fill="#173b5a"/></g>
-            <text x="500" y="137" text-anchor="middle" class="scene-sign">INITIATIVE IDENTITY SCANNER</text>
-            <g transform="translate(228 185)">
-              <g transform="translate(0 0)"><circle class="check-dot" cx="18" cy="18" r="15"/><text x="48" y="23" class="scene-small">STRATEGIC PROBLEM</text></g>
-              <g transform="translate(0 52)"><circle class="check-dot" cx="18" cy="18" r="15"/><text x="48" y="23" class="scene-small">HOME31 ALIGNMENT</text></g>
-              <g transform="translate(0 104)"><circle class="check-dot" cx="18" cy="18" r="15"/><text x="48" y="23" class="scene-small">ACCOUNTABLE OWNER</text></g>
-              <g transform="translate(0 156)"><circle class="check-dot" cx="18" cy="18" r="15"/><text x="48" y="23" class="scene-small">OUTCOME & KPI</text></g>
-              <g transform="translate(370 0)"><circle class="check-dot" cx="18" cy="18" r="15"/><text x="48" y="23" class="scene-small">COST & RESOURCES</text></g>
-              <g transform="translate(370 52)"><circle class="check-dot" cx="18" cy="18" r="15"/><text x="48" y="23" class="scene-small">TIMELINE</text></g>
-              <g transform="translate(370 104)"><circle class="check-dot" cx="18" cy="18" r="15"/><text x="48" y="23" class="scene-small">DEPENDENCIES</text></g>
-              <g transform="translate(370 156)"><circle class="check-dot" cx="18" cy="18" r="15"/><text x="48" y="23" class="scene-small">RISKS & READINESS</text></g>
-            </g>
-            <rect class="scan-line" x="284" y="188" width="432" height="8" rx="4" fill="#e47762" filter="url(#glow)"/>
-          </g>
-
-          <!-- WORLD 3: clone carnival -->
-          <g class="scene-world" id="world2">
-            <ellipse cx="500" cy="684" rx="440" ry="95" fill="#c7c0d7"/>
-            <g class="clay"><path d="M100 590Q150 220 500 125Q850 220 900 590Z" fill="#efe9f7"/><path d="M175 585Q220 300 500 210Q780 300 825 585Z" fill="#d9cbe9"/></g>
-            <text x="500" y="125" text-anchor="middle" class="scene-sign">THE “TOTALLY UNIQUE” PROPOSAL CARNIVAL</text>
-            <g class="clone clone-a" transform="translate(165 335)"><rect width="190" height="170" rx="42" fill="#f5d975" stroke="#fff" stroke-width="8"/><text x="95" y="56" text-anchor="middle" class="scene-sign">AI ASSISTANT</text><circle cx="65" cy="100" r="9" fill="#11283f"/><circle cx="125" cy="100" r="9" fill="#11283f"/><path d="M72 132q23 18 46 0" fill="none" stroke="#11283f" stroke-width="6" stroke-linecap="round"/></g>
-            <g class="clone clone-b" transform="translate(405 300)"><rect width="190" height="170" rx="42" fill="#b6ddd4" stroke="#fff" stroke-width="8"/><text x="95" y="56" text-anchor="middle" class="scene-sign">SUPER AGENT</text><circle cx="65" cy="100" r="9" fill="#11283f"/><circle cx="125" cy="100" r="9" fill="#11283f"/><path d="M72 132q23 18 46 0" fill="none" stroke="#11283f" stroke-width="6" stroke-linecap="round"/></g>
-            <g class="clone clone-c" transform="translate(645 335)"><rect width="190" height="170" rx="42" fill="#efb4a6" stroke="#fff" stroke-width="8"/><text x="95" y="56" text-anchor="middle" class="scene-sign">SMART BOT</text><circle cx="65" cy="100" r="9" fill="#11283f"/><circle cx="125" cy="100" r="9" fill="#11283f"/><path d="M72 132q23 18 46 0" fill="none" stroke="#11283f" stroke-width="6" stroke-linecap="round"/></g>
-            <g class="merge-core" transform="translate(500 605)"><circle r="78" fill="#173b5a" stroke="#e4b958" stroke-width="9"/><text y="-5" text-anchor="middle" fill="#fff" font-size="17" font-weight="950">ONE SHARED</text><text y="20" text-anchor="middle" fill="#fff" font-size="17" font-weight="950">CAPABILITY</text></g>
-          </g>
-
-          <!-- WORLD 4: dependency bridge -->
-          <g class="scene-world" id="world3">
-            <rect width="1000" height="800" fill="#b8d8dc" opacity=".36"/>
-            <path d="M0 660Q220 590 375 655T730 648T1000 640V800H0Z" fill="#7ca894"/>
-            <path d="M0 540Q180 500 310 575L390 690H0Z" fill="#315b56"/><path d="M1000 530Q820 490 700 565L615 690H1000Z" fill="#315b56"/>
-            <text x="500" y="115" text-anchor="middle" class="scene-sign">THE DEPENDENCY CANYON</text>
-            <g transform="translate(130 205)">
-              <g class="bridge-piece clay"><rect width="170" height="88" rx="25" fill="#e4b958"/><text x="85" y="52" text-anchor="middle" class="scene-sign">FINANCE</text></g>
-              <g class="bridge-piece clay" transform="translate(190 55)"><rect width="170" height="88" rx="25" fill="#5396c7"/><text x="85" y="52" text-anchor="middle" fill="#fff" class="scene-sign">ICT</text></g>
-              <g class="bridge-piece clay" transform="translate(380 0)"><rect width="170" height="88" rx="25" fill="#52a99a"/><text x="85" y="52" text-anchor="middle" fill="#fff" class="scene-sign">DATA</text></g>
-              <g class="bridge-piece clay" transform="translate(570 55)"><rect width="170" height="88" rx="25" fill="#947fc0"/><text x="85" y="52" text-anchor="middle" fill="#fff" class="scene-sign">PEOPLE</text></g>
-            </g>
-            <g fill="none" stroke="#fff0a8" stroke-width="7" stroke-linecap="round"><path class="dependency-beam" d="M215 293L405 348L595 293L785 348"/><path class="dependency-beam" d="M215 293L500 560L785 348"/></g>
-            <g class="soft" transform="translate(80 585)"><rect width="210" height="72" rx="24" fill="#fffaf0"/><text x="105" y="43" text-anchor="middle" class="scene-small">POLICY + APPROVAL</text></g>
-            <g class="soft" transform="translate(710 585)"><rect width="210" height="72" rx="24" fill="#fffaf0"/><text x="105" y="43" text-anchor="middle" class="scene-small">LEGAL + RISK</text></g>
-          </g>
-
-          <!-- WORLD 5: priority mountain -->
-          <g class="scene-world" id="world4">
-            <rect width="1000" height="800" fill="#c8dde2" opacity=".34"/>
-            <path d="M60 700L335 250L460 465L615 160L940 700Z" fill="#678493"/><path d="M335 250L390 340L300 325Z" fill="#fffaf0"/><path d="M615 160L685 270L560 250Z" fill="#fffaf0"/>
-            <path d="M130 690Q270 590 345 520Q440 420 520 390Q605 350 665 250" fill="none" stroke="#e4b958" stroke-width="18" stroke-linecap="round" stroke-dasharray="2 28"/>
-            <text x="500" y="115" text-anchor="middle" class="scene-sign">PRIORITY MOUNTAIN</text>
-            <g class="criterion-flag" transform="translate(185 590)"><path d="M0 0V-90" stroke="#11283f" stroke-width="7"/><path d="M0-90h130l-25 38H0Z" fill="#e47762"/><text x="62" y="-65" text-anchor="middle" fill="#fff" class="scene-small">MANDATE</text></g>
-            <g class="criterion-flag" transform="translate(330 500)"><path d="M0 0V-90" stroke="#11283f" stroke-width="7"/><path d="M0-90h130l-25 38H0Z" fill="#5396c7"/><text x="62" y="-65" text-anchor="middle" fill="#fff" class="scene-small">IMPACT</text></g>
-            <g class="criterion-flag" transform="translate(465 410)"><path d="M0 0V-90" stroke="#11283f" stroke-width="7"/><path d="M0-90h150l-25 38H0Z" fill="#52a99a"/><text x="72" y="-65" text-anchor="middle" fill="#fff" class="scene-small">AFFORDABLE</text></g>
-            <g class="criterion-flag" transform="translate(590 325)"><path d="M0 0V-90" stroke="#11283f" stroke-width="7"/><path d="M0-90h140l-25 38H0Z" fill="#947fc0"/><text x="67" y="-65" text-anchor="middle" fill="#fff" class="scene-small">READINESS</text></g>
-            <g class="criterion-flag" transform="translate(690 245)"><path d="M0 0V-90" stroke="#11283f" stroke-width="7"/><path d="M0-90h145l-25 38H0Z" fill="#e4b958"/><text x="69" y="-65" text-anchor="middle" class="scene-small">CAPACITY</text></g>
-            <circle class="summit-glow" cx="700" cy="150" r="85" fill="#fff1a2" filter="url(#glow)"/>
-          </g>
-
-          <!-- WORLD 6: ownership port -->
-          <g class="scene-world" id="world5">
-            <rect width="1000" height="800" fill="#afd5dc" opacity=".5"/><path d="M0 590Q250 530 500 590T1000 580V800H0Z" fill="#5f9da0"/>
-            <g class="clay" transform="translate(75 245)"><rect width="300" height="270" rx="45" fill="#fff5e5"/><rect x="60" y="-70" width="180" height="95" rx="30" fill="#173b5a"/><text x="150" y="-16" text-anchor="middle" fill="#fff" class="scene-sign">CPS LIGHTHOUSE</text><path d="M150-70V-130" stroke="#e4b958" stroke-width="12"/><circle cx="150" cy="-150" r="32" fill="#ffe682" filter="url(#glow)"/><text x="150" y="85" text-anchor="middle" class="scene-sign">CONNECT</text><text x="150" y="125" text-anchor="middle" class="scene-sign">STRUCTURE</text><text x="150" y="165" text-anchor="middle" class="scene-sign">ALIGN</text></g>
-            <g class="owner-badge clay" transform="translate(665 260)"><rect width="260" height="255" rx="45" fill="#173b5a"/><circle cx="130" cy="74" r="44" fill="#e4b958"/><path d="M83 182q47-67 94 0" fill="#fffaf0"/><text x="130" y="222" text-anchor="middle" fill="#fff" class="scene-sign">ACCOUNTABLE OWNER</text></g>
-            <path class="handoff-line" d="M380 400Q500 285 650 400" fill="none" stroke="#fff1a7" stroke-width="13" stroke-linecap="round"/>
-            <g transform="translate(405 540)"><rect width="190" height="78" rx="24" fill="#fffaf0"/><text x="95" y="34" text-anchor="middle" class="scene-small">CPS DOES NOT OWN</text><text x="95" y="54" text-anchor="middle" class="scene-small">DIVISIONAL OUTCOMES</text></g>
-          </g>
-
-          <!-- WORLD 7: HOME31 city -->
-          <g class="scene-world" id="world6">
-            <rect width="1000" height="800" fill="url(#citySky)"/>
-            <circle cx="830" cy="128" r="64" fill="#e4b958" opacity=".95" filter="url(#glow)"/>
-            <g transform="translate(80 690)">
-              <g class="clay"><rect x="0" y="-255" width="150" height="255" rx="25" fill="#e47762"/><text x="75" y="-210" text-anchor="middle" fill="#fff" class="scene-small">FINANCIAL</text><g><rect class="city-light" x="28" y="-165" width="32" height="30" rx="7"/><rect class="city-light" x="90" y="-165" width="32" height="30" rx="7"/><rect class="city-light" x="28" y="-105" width="32" height="30" rx="7"/><rect class="city-light" x="90" y="-105" width="32" height="30" rx="7"/></g></g>
-              <g class="clay" transform="translate(175)"><rect x="0" y="-350" width="160" height="350" rx="25" fill="#5396c7"/><text x="80" y="-305" text-anchor="middle" fill="#fff" class="scene-small">CUSTOMER</text><g><rect class="city-light" x="30" y="-250" width="34" height="32" rx="7"/><rect class="city-light" x="98" y="-250" width="34" height="32" rx="7"/><rect class="city-light" x="30" y="-180" width="34" height="32" rx="7"/><rect class="city-light" x="98" y="-180" width="34" height="32" rx="7"/><rect class="city-light" x="30" y="-110" width="34" height="32" rx="7"/><rect class="city-light" x="98" y="-110" width="34" height="32" rx="7"/></g></g>
-              <g class="clay" transform="translate(360)"><rect x="0" y="-290" width="150" height="290" rx="25" fill="#52a99a"/><text x="75" y="-245" text-anchor="middle" fill="#fff" class="scene-small">DIGITAL</text><g><rect class="city-light" x="28" y="-190" width="32" height="30" rx="7"/><rect class="city-light" x="90" y="-190" width="32" height="30" rx="7"/><rect class="city-light" x="28" y="-120" width="32" height="30" rx="7"/><rect class="city-light" x="90" y="-120" width="32" height="30" rx="7"/></g></g>
-              <g class="clay" transform="translate(535)"><rect x="0" y="-405" width="175" height="405" rx="25" fill="#e4b958"/><text x="88" y="-360" text-anchor="middle" class="scene-small">GOVERNANCE</text><g><rect class="city-light" x="35" y="-300" width="35" height="32" rx="7"/><rect class="city-light" x="105" y="-300" width="35" height="32" rx="7"/><rect class="city-light" x="35" y="-225" width="35" height="32" rx="7"/><rect class="city-light" x="105" y="-225" width="35" height="32" rx="7"/><rect class="city-light" x="35" y="-150" width="35" height="32" rx="7"/><rect class="city-light" x="105" y="-150" width="35" height="32" rx="7"/></g></g>
-              <g class="clay" transform="translate(735)"><rect x="0" y="-315" width="150" height="315" rx="25" fill="#947fc0"/><text x="75" y="-270" text-anchor="middle" fill="#fff" class="scene-small">WORKFORCE</text><g><rect class="city-light" x="28" y="-210" width="32" height="30" rx="7"/><rect class="city-light" x="90" y="-210" width="32" height="30" rx="7"/><rect class="city-light" x="28" y="-135" width="32" height="30" rx="7"/><rect class="city-light" x="90" y="-135" width="32" height="30" rx="7"/></g></g>
-            </g>
-            <g fill="none" stroke="#fff1a7" stroke-width="6"><path class="city-link" d="M155 435L335 340L515 400L703 285L890 375"/><path class="city-link" d="M155 435L515 400L890 375"/></g>
-            <g transform="translate(500 230)"><circle r="94" fill="#fffaf0" stroke="#e4b958" stroke-width="9"/><text y="-7" text-anchor="middle" font-size="29" font-weight="950" fill="#11283f">HOME31</text><text y="25" text-anchor="middle" class="scene-small">ONE ENTERPRISE PORTFOLIO</text></g>
-            <g class="firework f1" transform="translate(175 180)" stroke="#ffe58a" stroke-width="6"><path d="M0-45V-95M0 45v50M-45 0h-50M45 0h50M-32-32l-36-36M32 32l36 36M32-32l36-36M-32 32l-36 36"/></g>
-            <g class="firework f2" transform="translate(780 215)" stroke="#81dfd1" stroke-width="6"><path d="M0-45V-95M0 45v50M-45 0h-50M45 0h50M-32-32l-36-36M32 32l36 36M32-32l36-36M-32 32l-36 36"/></g>
-            <g class="firework f3" transform="translate(670 100)" stroke="#ef9b8d" stroke-width="6"><path d="M0-30V-67M0 30v37M-30 0h-37M30 0h37M-21-21l-26-26M21 21l26 26M21-21l26-26M-21 21l-26 26"/></g>
-          </g>
-
-          <!-- PERSISTENT CHARACTER -->
-          <g id="idea31" transform="translate(500 530)">
-            <g class="flame"><path d="M-34 76Q0 162 34 76Q0 112-34 76" fill="#e47762"/><path d="M-20 78Q0 132 20 78Q0 103-20 78" fill="#ffe17a"/></g>
-            <path class="leg" d="M-38 58Q-58 90-70 112"/><ellipse class="shoe" cx="-78" cy="121" rx="30" ry="18"/>
-            <path class="leg" d="M38 58Q58 90 70 112"/><ellipse class="shoe" cx="78" cy="121" rx="30" ry="18"/>
-            <g class="arm-left"><path class="arm" d="M-69-6Q-108-25-126-65"/><circle class="glove" cx="-132" cy="-76" r="21"/></g>
-            <g class="arm-right"><path class="arm" d="M69-6Q108-25 126-65"/><circle class="glove" cx="132" cy="-76" r="21"/></g>
-            <rect class="body" x="-78" y="-72" width="156" height="142" rx="39"/>
-            <text class="tag" x="0" y="-31" text-anchor="middle">IDEA 31</text>
-            <path class="brow brow-left" d="M-48-2q18-13 34 0"/><path class="brow brow-right" d="M14-2q18-13 34 0"/>
-            <circle class="eye eye-left" cx="-30" cy="19" r="8"/><circle class="eye eye-right" cx="30" cy="19" r="8"/>
-            <path class="mouth" d="M-22 44q22 19 44 0"/>
-            <g class="character-spark" fill="#fff0a5"><circle cx="-98" cy="-91" r="6"/><circle cx="104" cy="-48" r="5"/><circle cx="78" cy="-112" r="4"/></g>
-          </g>
-        </svg>
-        <div class="toast" id="toast" aria-live="polite"></div>
-        <nav class="scene-map" aria-label="Journey chapters">
-          <button type="button" class="active" data-jump="0" aria-label="Chapter 1"></button><button type="button" data-jump="1" aria-label="Chapter 2"></button><button type="button" data-jump="2" aria-label="Chapter 3"></button><button type="button" data-jump="3" aria-label="Chapter 4"></button><button type="button" data-jump="4" aria-label="Chapter 5"></button><button type="button" data-jump="5" aria-label="Chapter 6"></button><button type="button" data-jump="6" aria-label="Chapter 7"></button>
-        </nav>
-      </div>
+    <div class="landing-art" aria-label="Idea 31, an energetic strategic proposal character">
+      <span class="hero-chip hc1">Confidence: 100%</span><span class="hero-chip hc2">Owner: TBC</span><span class="hero-chip hc3">Budget: later</span><span class="hero-chip hc4">Go-live: yesterday</span>
+      <svg class="hero-svg" viewBox="0 0 620 620" role="img" aria-label="Idea 31 character ready to begin its journey">
+        <defs><linearGradient id="heroBody" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff4a2"/><stop offset=".55" stop-color="#edca58"/><stop offset="1" stop-color="#bd7d29"/></linearGradient></defs>
+        <g fill="none" stroke="#10263e" stroke-linecap="round">
+          <path d="M213 420Q155 478 133 537" stroke-width="14"/><path d="M407 420Q465 478 487 537" stroke-width="14"/>
+          <ellipse cx="122" cy="550" rx="45" ry="25" fill="#fffaf1" stroke-width="6"/><ellipse cx="498" cy="550" rx="45" ry="25" fill="#fffaf1" stroke-width="6"/>
+          <path d="M210 278Q142 270 105 215" stroke-width="15"/><path d="M410 278Q478 270 515 215" stroke-width="15"/>
+          <circle cx="92" cy="199" r="27" fill="#fffaf1" stroke-width="6"/><circle cx="528" cy="199" r="27" fill="#fffaf1" stroke-width="6"/>
+        </g>
+        <rect x="183" y="165" width="254" height="280" rx="78" fill="url(#heroBody)" stroke="#fff7d5" stroke-width="12"/>
+        <path d="M222 186Q274 143 330 166Q379 143 416 190" fill="#fff1a0" opacity=".58"/>
+        <path d="M232 156l-30-65M390 158l31-68" stroke="#10263e" stroke-width="12" stroke-linecap="round"/><circle cx="197" cy="82" r="19" fill="#dd735f"/><circle cx="426" cy="80" r="19" fill="#4f9d98"/>
+        <text x="310" y="245" text-anchor="middle" fill="#7b5416" font-size="25" font-weight="950" letter-spacing="3">IDEA 31</text>
+        <path d="M235 290q24-18 48 0M337 290q24-18 48 0" fill="none" stroke="#10263e" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="259" cy="321" r="12" fill="#10263e"/><circle cx="361" cy="321" r="12" fill="#10263e"/><circle cx="255" cy="317" r="4" fill="#fff"/><circle cx="357" cy="317" r="4" fill="#fff"/>
+        <path d="M260 372Q310 414 362 370" fill="#fffaf1" stroke="#10263e" stroke-width="8"/><path d="M286 388Q310 402 337 387" fill="#dd735f"/>
+        <g fill="#dd735f"><path d="M102 116l10 21 23 3-17 16 4 23-20-11-21 11 4-23-17-16 24-3z"/><path d="M515 380l8 17 19 3-14 13 4 19-17-9-17 9 3-19-14-13 20-3z"/></g>
+      </svg>
     </div>
-    <div class="chapter-track" aria-hidden="true"><div class="scroll-step"></div><div class="scroll-step"></div><div class="scroll-step"></div><div class="scroll-step"></div><div class="scroll-step"></div><div class="scroll-step"></div><div class="scroll-step"></div></div>
-  </section>
+  </div>
+</section>
 
-  <section class="interlude"><blockquote>Retreats create possibilities.<em>Portfolios create commitment.</em></blockquote></section>
-  <section class="finale" id="lesson">
-    <div class="final-wrap">
-      <div class="eyebrow">The HOME31 ending</div>
-      <h2>The character survives when the initiative becomes <em>executable.</em></h2>
-      <p>The post-retreat journey converts many functional proposals into one coherent enterprise portfolio with clear choices, accountable owners, realistic sequencing and measurable institutional outcomes.</p>
-      <div class="roles">
-        <div class="role primary"><b>CPS</b><p>Connects, structures, coordinates and aligns the enterprise view.</p></div>
-        <div class="role"><b>Management & Heads of Division</b><p>Resolve trade-offs, make decisions and remain accountable for institutional outcomes.</p></div>
-        <div class="role"><b>Initiative Owners</b><p>Plan, mobilise, coordinate and deliver with the relevant support functions.</p></div>
-      </div>
-      <button class="replay" id="replay" type="button">Replay Idea 31’s journey ↺</button>
+<section class="experience" id="experience" hidden>
+  <header class="app-header">
+    <div class="app-brand"><span class="brand-orb">31</span><span>HOME31 JOURNEY</span></div>
+    <div class="chapter-head"><div class="chapter-count" id="chapterCount">Chapter 1 of 7</div><div class="chapter-name" id="chapterName">The Retreat Room</div></div>
+    <div class="header-actions"><button class="icon-btn" id="restartBtn" type="button">Restart</button><button class="icon-btn" id="soundBtn" type="button" aria-pressed="false">Sound off</button></div>
+  </header>
+
+  <div class="theatre">
+    <div class="visual-shell" id="visualShell">
+      <svg class="stage" id="stage" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="sceneTitle sceneDesc">
+        <title id="sceneTitle">HOME31 interactive story</title><desc id="sceneDesc">Idea 31 travels through seven stages from retreat proposal to accountable enterprise initiative.</desc>
+        <defs>
+          <linearGradient id="ideaBody" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff4a8"/><stop offset=".55" stop-color="#efcc5d"/><stop offset="1" stop-color="#bd7b28"/></linearGradient>
+          <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#effcff"/><stop offset="1" stop-color="#8bcbd3"/></linearGradient>
+          <linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#102a47"/><stop offset="1" stop-color="#1a5165"/></linearGradient>
+          <filter id="clayShadow" x="-40%" y="-40%" width="180%" height="200%"><feDropShadow dx="0" dy="15" stdDeviation="12" flood-color="#0c2038" flood-opacity=".2"/></filter>
+          <filter id="softShadow" x="-40%" y="-40%" width="180%" height="200%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#0c2038" flood-opacity=".14"/></filter>
+          <filter id="characterShadow" x="-60%" y="-60%" width="220%" height="240%"><feDropShadow dx="0" dy="17" stdDeviation="12" flood-color="#0c2038" flood-opacity=".28"/></filter>
+          <filter id="hotGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+
+        <!-- 1 RETREAT -->
+        <g class="scene active" data-scene="0">
+          <ellipse cx="500" cy="620" rx="430" ry="70" fill="#a9c49f"/>
+          <g class="clay"><rect x="115" y="90" width="770" height="410" rx="56" fill="#f5e6cf"/><rect x="175" y="150" width="650" height="205" rx="34" fill="#ddc19d"/><ellipse cx="500" cy="445" rx="300" ry="62" fill="#b8794f"/><rect x="477" y="430" width="46" height="170" rx="20" fill="#855338"/></g>
+          <text x="500" y="126" text-anchor="middle" class="scene-label">THE RETREAT ROOM · AFTER EVERYONE LEFT</text>
+          <g class="hotspot" data-item="0" transform="translate(210 188)"><rect width="135" height="95" rx="20" fill="#f3d66d"/><circle class="status-dot" cx="116" cy="18" r="8" fill="#dd735f"/><text x="67" y="42" text-anchor="middle" class="scene-label">AI</text><text x="67" y="65" text-anchor="middle" class="scene-mini">GO LIVE NOW</text></g>
+          <g class="hotspot" data-item="1" transform="translate(370 180)"><rect width="145" height="100" rx="20" fill="#b4dbd3"/><circle class="status-dot" cx="126" cy="18" r="8" fill="#dd735f"/><text x="72" y="43" text-anchor="middle" class="scene-label">DASHBOARD</text><text x="72" y="67" text-anchor="middle" class="scene-mini">OWNER: TBC</text></g>
+          <g class="hotspot" data-item="2" transform="translate(540 190)"><rect width="135" height="95" rx="20" fill="#efb2a5"/><circle class="status-dot" cx="116" cy="18" r="8" fill="#dd735f"/><text x="67" y="42" text-anchor="middle" class="scene-label">PLATFORM</text><text x="67" y="65" text-anchor="middle" class="scene-mini">COST: LATER</text></g>
+          <g class="hotspot" data-item="3" transform="translate(700 182)"><rect width="115" height="98" rx="20" fill="#cec0dc"/><circle class="status-dot" cx="96" cy="18" r="8" fill="#dd735f"/><text x="57" y="42" text-anchor="middle" class="scene-label">URGENT</text><text x="57" y="65" text-anchor="middle" class="scene-mini">WHY? YES.</text></g>
+          <g class="soft" transform="translate(770 390)"><rect width="90" height="70" rx="23" fill="#fffaf1"/><text x="45" y="44" text-anchor="middle" font-size="23">☕</text></g>
+        </g>
+
+        <!-- 2 SCANNER -->
+        <g class="scene" data-scene="1">
+          <ellipse cx="500" cy="625" rx="420" ry="72" fill="#9ebeb6"/>
+          <g class="clay"><rect x="175" y="70" width="650" height="510" rx="75" fill="#d7ecef"/><rect x="290" y="135" width="420" height="350" rx="62" fill="url(#glass)" stroke="#fff" stroke-width="10"/><rect x="350" y="515" width="300" height="62" rx="25" fill="#173a59"/></g>
+          <text x="500" y="112" text-anchor="middle" class="scene-label">INITIATIVE IDENTITY SCANNER</text>
+          <g class="hotspot" data-item="0" transform="translate(210 175)"><circle r="54" fill="#f3d66d" stroke="#fff" stroke-width="7"/><circle class="status-dot" cx="34" cy="-35" r="9" fill="#dd735f"/><text y="5" text-anchor="middle" class="scene-mini">IDENTITY</text><rect class="scan-beam" x="25" y="-5" width="330" height="10" rx="5" fill="#f3d66d"/></g>
+          <g class="hotspot" data-item="1" transform="translate(790 245)"><circle r="54" fill="#b4dbd3" stroke="#fff" stroke-width="7"/><circle class="status-dot" cx="34" cy="-35" r="9" fill="#dd735f"/><text y="5" text-anchor="middle" class="scene-mini">OWNER</text><rect class="scan-beam" x="-355" y="-5" width="330" height="10" rx="5" fill="#4f9d98"/></g>
+          <g class="hotspot" data-item="2" transform="translate(210 385)"><circle r="54" fill="#efb2a5" stroke="#fff" stroke-width="7"/><circle class="status-dot" cx="34" cy="-35" r="9" fill="#dd735f"/><text y="5" text-anchor="middle" class="scene-mini">DELIVERY</text><rect class="scan-beam" x="25" y="-5" width="330" height="10" rx="5" fill="#dd735f"/></g>
+          <g class="hotspot" data-item="3" transform="translate(790 455)"><circle r="54" fill="#cec0dc" stroke="#fff" stroke-width="7"/><circle class="status-dot" cx="34" cy="-35" r="9" fill="#dd735f"/><text y="5" text-anchor="middle" class="scene-mini">GOVERN</text><rect class="scan-beam" x="-355" y="-5" width="330" height="10" rx="5" fill="#8f7cb4"/></g>
+        </g>
+
+        <!-- 3 DUPLICATES -->
+        <g class="scene" data-scene="2">
+          <ellipse cx="500" cy="635" rx="435" ry="70" fill="#c4bbd2"/>
+          <g class="clay"><path d="M85 560Q130 190 500 90Q870 190 915 560Z" fill="#eee8f5"/><path d="M165 555Q205 270 500 180Q795 270 835 555Z" fill="#d6c9e6"/></g>
+          <text x="500" y="120" text-anchor="middle" class="scene-label">THE “TOTALLY UNIQUE” PROPOSAL CARNIVAL</text>
+          <g class="hotspot clone-card" data-item="0" style="--tx:315px;--ty:180px" transform="translate(115 300)"><rect width="180" height="165" rx="42" fill="#f3d66d" stroke="#fff" stroke-width="8"/><circle class="status-dot" cx="155" cy="22" r="9" fill="#dd735f"/><text x="90" y="54" text-anchor="middle" class="scene-label">AI ASSISTANT</text><circle cx="60" cy="100" r="9" fill="#10263e"/><circle cx="120" cy="100" r="9" fill="#10263e"/><path d="M67 130q23 18 46 0" fill="none" stroke="#10263e" stroke-width="6" stroke-linecap="round"/></g>
+          <g class="hotspot clone-card" data-item="1" style="--tx:75px;--ty:210px" transform="translate(345 270)"><rect width="180" height="165" rx="42" fill="#b4dbd3" stroke="#fff" stroke-width="8"/><circle class="status-dot" cx="155" cy="22" r="9" fill="#dd735f"/><text x="90" y="54" text-anchor="middle" class="scene-label">SUPER AGENT</text><circle cx="60" cy="100" r="9" fill="#10263e"/><circle cx="120" cy="100" r="9" fill="#10263e"/><path d="M67 130q23 18 46 0" fill="none" stroke="#10263e" stroke-width="6" stroke-linecap="round"/></g>
+          <g class="hotspot clone-card" data-item="2" style="--tx:-155px;--ty:180px" transform="translate(575 300)"><rect width="180" height="165" rx="42" fill="#efb2a5" stroke="#fff" stroke-width="8"/><circle class="status-dot" cx="155" cy="22" r="9" fill="#dd735f"/><text x="90" y="54" text-anchor="middle" class="scene-label">SMART BOT</text><circle cx="60" cy="100" r="9" fill="#10263e"/><circle cx="120" cy="100" r="9" fill="#10263e"/><path d="M67 130q23 18 46 0" fill="none" stroke="#10263e" stroke-width="6" stroke-linecap="round"/></g>
+          <g class="hotspot clone-card" data-item="3" style="--tx:-365px;--ty:210px" transform="translate(795 270)"><rect width="150" height="165" rx="42" fill="#cec0dc" stroke="#fff" stroke-width="8"/><circle class="status-dot" cx="125" cy="22" r="9" fill="#dd735f"/><text x="75" y="54" text-anchor="middle" class="scene-label">AI HUB</text><circle cx="50" cy="100" r="9" fill="#10263e"/><circle cx="100" cy="100" r="9" fill="#10263e"/><path d="M55 130q20 18 40 0" fill="none" stroke="#10263e" stroke-width="6" stroke-linecap="round"/></g>
+          <g class="clay" transform="translate(500 555)"><circle r="85" fill="#173a59" stroke="#d6aa54" stroke-width="9"/><text y="-8" text-anchor="middle" fill="#fff" class="scene-label">ONE SHARED</text><text y="18" text-anchor="middle" fill="#fff" class="scene-label">CAPABILITY</text></g>
+        </g>
+
+        <!-- 4 DEPENDENCY -->
+        <g class="scene" data-scene="3">
+          <rect width="1000" height="700" fill="#b9d6d8" opacity=".35"/>
+          <path d="M0 555Q180 500 330 565L405 700H0Z" fill="#769d89"/><path d="M1000 555Q820 500 670 565L595 700H1000Z" fill="#769d89"/><path d="M335 700Q500 510 665 700" fill="#36586b" opacity=".28"/>
+          <text x="500" y="88" text-anchor="middle" class="scene-label">DEPENDENCY CANYON · NO SOLO CROSSING</text>
+          <g class="hotspot" data-item="0" transform="translate(250 225)"><circle r="65" fill="#f3d66d" stroke="#fff" stroke-width="8"/><circle class="status-dot" cx="43" cy="-43" r="9" fill="#dd735f"/><text y="5" text-anchor="middle" class="scene-label">FINANCE</text><path class="bridge-segment" d="M60 30Q160 80 250 130" fill="none" stroke="#ffe99a" stroke-width="14" stroke-linecap="round"/></g>
+          <g class="hotspot" data-item="1" transform="translate(750 225)"><circle r="65" fill="#5e94c2" stroke="#fff" stroke-width="8"/><circle class="status-dot" cx="43" cy="-43" r="9" fill="#dd735f"/><text y="5" text-anchor="middle" class="scene-label" fill="#fff">ICT</text><path class="bridge-segment" d="M-60 30Q-160 80-250 130" fill="none" stroke="#d9f6ff" stroke-width="14" stroke-linecap="round"/></g>
+          <g class="hotspot" data-item="2" transform="translate(190 430)"><circle r="58" fill="#b4dbd3" stroke="#fff" stroke-width="8"/><circle class="status-dot" cx="38" cy="-38" r="9" fill="#dd735f"/><text y="5" text-anchor="middle" class="scene-label">DATA</text><path class="bridge-segment" d="M55 15Q165 25 310 0" fill="none" stroke="#bdf5e9" stroke-width="13" stroke-linecap="round"/></g>
+          <g class="hotspot" data-item="3" transform="translate(810 430)"><circle r="58" fill="#efb2a5" stroke="#fff" stroke-width="8"/><circle class="status-dot" cx="38" cy="-38" r="9" fill="#dd735f"/><text y="5" text-anchor="middle" class="scene-label">RISK</text><path class="bridge-segment" d="M-55 15Q-165 25-310 0" fill="none" stroke="#ffd4cb" stroke-width="13" stroke-linecap="round"/></g>
+          <g class="hotspot" data-item="4" transform="translate(500 505)"><circle r="70" fill="#8f7cb4" stroke="#fff" stroke-width="8"/><circle class="status-dot" cx="46" cy="-46" r="9" fill="#dd735f"/><text y="-2" text-anchor="middle" class="scene-label" fill="#fff">OWNER</text><text y="20" text-anchor="middle" class="scene-mini" fill="#fff">DECIDES & DELIVERS</text></g>
+          <g class="soft" transform="translate(430 140)"><rect width="140" height="55" rx="17" fill="#fffaf1"/><text x="70" y="23" text-anchor="middle" class="scene-mini">FAST TRACK</text><text x="70" y="39" text-anchor="middle" class="scene-mini">NO BUDGET · NO OWNER</text></g>
+        </g>
+
+        <!-- 5 PRIORITY -->
+        <g class="scene" data-scene="4">
+          <rect width="1000" height="700" fill="#d8e4db" opacity=".42"/><path d="M40 650L465 70Q500 28 535 70L960 650Z" fill="#9c9580"/><path d="M150 650L482 165Q500 140 518 165L850 650Z" fill="#c8b79a"/><path d="M420 165L500 60L580 165L535 150L500 175L465 150Z" fill="#fffaf1"/>
+          <text x="500" y="95" text-anchor="middle" class="scene-label">PRIORITY MOUNTAIN</text>
+          <g class="hotspot checkpoint" data-item="0" transform="translate(230 555)"><circle r="42" fill="#f3d66d" stroke="#fff" stroke-width="7"/><circle class="status-dot" cx="28" cy="-28" r="8" fill="#dd735f"/><path class="flag-stem" d="M0-42V-95" stroke="#10263e" stroke-width="6"/><path class="flag" d="M0-95h70l-18 22 18 22H0Z" fill="#dd735f"/><text y="7" text-anchor="middle" class="scene-mini">WHY</text></g>
+          <g class="hotspot checkpoint" data-item="1" transform="translate(370 445)"><circle r="42" fill="#b4dbd3" stroke="#fff" stroke-width="7"/><circle class="status-dot" cx="28" cy="-28" r="8" fill="#dd735f"/><path class="flag-stem" d="M0-42V-95" stroke="#10263e" stroke-width="6"/><path class="flag" d="M0-95h70l-18 22 18 22H0Z" fill="#dd735f"/><text y="7" text-anchor="middle" class="scene-mini">VALUE</text></g>
+          <g class="hotspot checkpoint" data-item="2" transform="translate(520 350)"><circle r="42" fill="#efb2a5" stroke="#fff" stroke-width="7"/><circle class="status-dot" cx="28" cy="-28" r="8" fill="#dd735f"/><path class="flag-stem" d="M0-42V-95" stroke="#10263e" stroke-width="6"/><path class="flag" d="M0-95h70l-18 22 18 22H0Z" fill="#dd735f"/><text y="7" text-anchor="middle" class="scene-mini">FEASIBLE</text></g>
+          <g class="hotspot checkpoint" data-item="3" transform="translate(640 250)"><circle r="42" fill="#cec0dc" stroke="#fff" stroke-width="7"/><circle class="status-dot" cx="28" cy="-28" r="8" fill="#dd735f"/><path class="flag-stem" d="M0-42V-95" stroke="#10263e" stroke-width="6"/><path class="flag" d="M0-95h70l-18 22 18 22H0Z" fill="#dd735f"/><text y="7" text-anchor="middle" class="scene-mini">READY</text></g>
+          <g class="hotspot checkpoint" data-item="4" transform="translate(500 140)"><circle r="46" fill="#d6aa54" stroke="#fff" stroke-width="8"/><circle class="status-dot" cx="30" cy="-30" r="8" fill="#dd735f"/><path class="flag-stem" d="M0-46V-105" stroke="#10263e" stroke-width="6"/><path class="flag" d="M0-105h82l-21 25 21 25H0Z" fill="#dd735f"/><text y="7" text-anchor="middle" class="scene-mini">CONFIDENT</text></g>
+        </g>
+
+        <!-- 6 OWNERSHIP -->
+        <g class="scene" data-scene="5">
+          <rect width="1000" height="700" fill="#b6d4d8" opacity=".48"/><path d="M0 560Q240 505 500 565T1000 555V700H0Z" fill="#5e989a"/>
+          <g class="clay" transform="translate(80 210)"><rect width="300" height="270" rx="48" fill="#fff3df"/><rect x="58" y="-66" width="184" height="90" rx="28" fill="#173a59"/><text x="150" y="-14" text-anchor="middle" class="scene-label" fill="#fff">CPS LIGHTHOUSE</text><path d="M150-66V-124" stroke="#d6aa54" stroke-width="12"/><circle cx="150" cy="-145" r="30" fill="#ffe78e" filter="url(#hotGlow)"/><text x="150" y="82" text-anchor="middle" class="scene-label">CONNECT</text><text x="150" y="122" text-anchor="middle" class="scene-label">STRUCTURE</text><text x="150" y="162" text-anchor="middle" class="scene-label">ALIGN</text></g>
+          <g class="clay" transform="translate(650 215)"><rect width="270" height="265" rx="48" fill="#173a59"/><circle cx="135" cy="72" r="45" fill="#d6aa54"/><path d="M84 182q51-72 102 0" fill="#fffaf1"/><text x="135" y="225" text-anchor="middle" class="scene-label" fill="#fff">ACCOUNTABLE OWNER</text></g>
+          <g class="hotspot" data-item="0" transform="translate(405 300)"><circle r="44" fill="#f3d66d" stroke="#fff" stroke-width="7"/><circle class="status-dot" cx="29" cy="-29" r="8" fill="#dd735f"/><text y="5" text-anchor="middle" class="scene-mini">MAP</text></g>
+          <g class="hotspot" data-item="1" transform="translate(470 390)"><circle r="44" fill="#b4dbd3" stroke="#fff" stroke-width="7"/><circle class="status-dot" cx="29" cy="-29" r="8" fill="#dd735f"/><text y="5" text-anchor="middle" class="scene-mini">SEQUENCE</text></g>
+          <g class="hotspot" data-item="2" transform="translate(535 300)"><circle r="44" fill="#cec0dc" stroke="#fff" stroke-width="7"/><circle class="status-dot" cx="29" cy="-29" r="8" fill="#dd735f"/><text y="5" text-anchor="middle" class="scene-mini">MONITOR</text></g>
+          <g class="hotspot" data-item="3" transform="translate(500 500)"><circle r="58" fill="#dd735f" stroke="#fff" stroke-width="8"/><circle class="status-dot" cx="38" cy="-38" r="9" fill="#dd735f"/><path class="handoff-key" d="M-20 0h70m-15 0v24m-18-24v16" stroke="#fff7d1" stroke-width="12" stroke-linecap="round"/><circle class="handoff-key" cx="-38" cy="0" r="30" fill="none" stroke="#fff7d1" stroke-width="12"/></g>
+          <path d="M380 430Q500 315 650 430" fill="none" stroke="#ffe89a" stroke-width="10" stroke-dasharray="14 14"/>
+        </g>
+
+        <!-- 7 CITY -->
+        <g class="scene" data-scene="6">
+          <rect width="1000" height="700" fill="url(#night)"/><circle cx="825" cy="105" r="58" fill="#d6aa54" opacity=".95" filter="url(#hotGlow)"/>
+          <g transform="translate(500 315)" class="clay"><circle r="105" fill="#fffaf1" stroke="#d6aa54" stroke-width="10"/><text y="-8" text-anchor="middle" font-size="34" font-weight="950" fill="#10263e">HOME31</text><text y="25" text-anchor="middle" class="scene-mini">ONE ENTERPRISE PORTFOLIO</text></g>
+          <g class="hotspot district" data-item="0" transform="translate(170 215)"><rect x="-75" y="-75" width="150" height="150" rx="34" fill="#dd735f"/><circle class="status-dot" cx="52" cy="-52" r="9" fill="#dd735f"/><rect class="district-light" x="-45" y="-30" width="30" height="28" rx="6" fill="#6d3540"/><rect class="district-light" x="15" y="-30" width="30" height="28" rx="6" fill="#6d3540"/><text y="45" text-anchor="middle" class="scene-mini" fill="#fff">FINANCIAL</text></g>
+          <g class="hotspot district" data-item="1" transform="translate(170 500)"><rect x="-75" y="-75" width="150" height="150" rx="34" fill="#5e94c2"/><circle class="status-dot" cx="52" cy="-52" r="9" fill="#dd735f"/><rect class="district-light" x="-45" y="-30" width="30" height="28" rx="6" fill="#2a506f"/><rect class="district-light" x="15" y="-30" width="30" height="28" rx="6" fill="#2a506f"/><text y="45" text-anchor="middle" class="scene-mini" fill="#fff">CUSTOMER</text></g>
+          <g class="hotspot district" data-item="2" transform="translate(400 565)"><rect x="-75" y="-75" width="150" height="150" rx="34" fill="#4f9d98"/><circle class="status-dot" cx="52" cy="-52" r="9" fill="#dd735f"/><rect class="district-light" x="-45" y="-30" width="30" height="28" rx="6" fill="#28625f"/><rect class="district-light" x="15" y="-30" width="30" height="28" rx="6" fill="#28625f"/><text y="45" text-anchor="middle" class="scene-mini" fill="#fff">DIGITAL</text></g>
+          <g class="hotspot district" data-item="3" transform="translate(830 215)"><rect x="-75" y="-75" width="150" height="150" rx="34" fill="#d6aa54"/><circle class="status-dot" cx="52" cy="-52" r="9" fill="#dd735f"/><rect class="district-light" x="-45" y="-30" width="30" height="28" rx="6" fill="#865f26"/><rect class="district-light" x="15" y="-30" width="30" height="28" rx="6" fill="#865f26"/><text y="45" text-anchor="middle" class="scene-mini">GOVERNANCE</text></g>
+          <g class="hotspot district" data-item="4" transform="translate(830 500)"><rect x="-75" y="-75" width="150" height="150" rx="34" fill="#8f7cb4"/><circle class="status-dot" cx="52" cy="-52" r="9" fill="#dd735f"/><rect class="district-light" x="-45" y="-30" width="30" height="28" rx="6" fill="#4f4269"/><rect class="district-light" x="15" y="-30" width="30" height="28" rx="6" fill="#4f4269"/><text y="45" text-anchor="middle" class="scene-mini" fill="#fff">WORKFORCE</text></g>
+          <g class="hotspot district" data-item="5" transform="translate(600 565)"><rect x="-75" y="-75" width="150" height="150" rx="34" fill="#6aa579"/><circle class="status-dot" cx="52" cy="-52" r="9" fill="#dd735f"/><rect class="district-light" x="-45" y="-30" width="30" height="28" rx="6" fill="#356045"/><rect class="district-light" x="15" y="-30" width="30" height="28" rx="6" fill="#356045"/><text y="45" text-anchor="middle" class="scene-mini" fill="#fff">EXECUTION</text></g>
+          <g fill="none" stroke="#ffe99a" stroke-width="5" opacity=".6"><path d="M245 215Q370 240 410 285"/><path d="M245 500Q360 420 410 355"/><path d="M400 490Q430 420 455 395"/><path d="M755 215Q630 240 590 285"/><path d="M755 500Q640 420 590 355"/><path d="M600 490Q570 420 545 395"/></g>
+        </g>
+
+        <!-- PERSISTENT IDEA 31 -->
+        <g id="idea31" transform="translate(500 500)">
+          <g class="idea-spark" fill="#fff0a5"><circle cx="-105" cy="-92" r="6"/><circle cx="105" cy="-48" r="5"/><circle cx="78" cy="-115" r="4"/></g>
+          <path class="idea-line" d="M-38 58Q-57 88-70 112"/><ellipse class="idea-shoe" cx="-77" cy="121" rx="29" ry="17"/><path class="idea-line" d="M38 58Q57 88 70 112"/><ellipse class="idea-shoe" cx="77" cy="121" rx="29" ry="17"/>
+          <path class="idea-line" d="M-68-6Q-108-25-126-64"/><circle class="idea-glove" cx="-132" cy="-75" r="20"/><path class="idea-line" d="M68-6Q108-25 126-64"/><circle class="idea-glove" cx="132" cy="-75" r="20"/>
+          <rect class="idea-body" x="-77" y="-72" width="154" height="140" rx="39"/><text class="idea-tag" x="0" y="-30" text-anchor="middle">IDEA 31</text>
+          <path class="idea-brow brow-left" d="M-48-2q18-13 34 0"/><path class="idea-brow brow-right" d="M14-2q18-13 34 0"/><circle class="idea-eye" cx="-30" cy="18" r="8"/><circle class="idea-eye" cx="30" cy="18" r="8"/><path class="idea-mouth" d="M-22 44q22 18 44 0"/>
+        </g>
+      </svg>
+      <div class="toast" id="toast" aria-live="polite"></div>
+      <div class="interaction-banner"><span class="pulse-dot"></span><span id="interactionHint">Tap the highlighted proposal to wake it up.</span></div>
     </div>
-  </section>
-</main>
-<footer><span>HOME31 · The Explosive Journey of Idea 31</span><span>One direction → One portfolio → Many accountable owners</span></footer>
+
+    <aside class="story-shell">
+      <nav class="story-progress" id="progressNav" aria-label="Journey chapters"></nav>
+      <div class="story-content" aria-live="polite">
+        <div class="kicker" id="kicker"></div>
+        <h1 id="storyTitle"></h1>
+        <p id="storyCopy"></p>
+        <div class="lesson" id="lesson"></div>
+        <div class="task-block"><div class="task-row"><span id="taskLabel"></span><span id="taskCount"></span></div><div class="task-track"><div class="task-fill" id="taskFill"></div></div></div>
+      </div>
+      <button class="action-btn" id="actionBtn" type="button"></button>
+      <div class="story-nav"><button class="nav-btn" id="prevBtn" type="button">← Previous</button><span class="nav-status" id="navStatus"></span><button class="nav-btn next" id="nextBtn" type="button">Next chapter →</button></div>
+    </aside>
+  </div>
+</section>
+
+<div class="final-overlay" id="finalOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="finalTitle">
+  <div class="final-card">
+    <div class="final-orb">31</div>
+    <div class="kicker">The journey is complete</div>
+    <h2 id="finalTitle">One direction. One portfolio. Many accountable owners.</h2>
+    <p>Idea 31 survived because it became structured, connected, prioritised and owned. HOME31 turns institutional ambition into sequenced and measurable delivery.</p>
+    <div class="final-actions"><button class="again" id="journeyAgain" type="button">Replay the journey ↺</button><button class="back" id="backToCity" type="button">Return to HOME31 City</button></div>
+  </div>
+</div>
 
 <script>
 (() => {
-  const qs = (s, r=document) => r.querySelector(s);
-  const qsa = (s, r=document) => [...r.querySelectorAll(s)];
-  const journey = qs('#journey');
-  const stage = qs('#visualStage');
-  const panels = qsa('.chapter-panel');
-  const worlds = qsa('.scene-world');
-  const dots = qsa('[data-jump]');
-  const idea = qs('#idea31');
-  const toast = qs('#toast');
-  const readout = qs('#chapterReadout');
-  const progress = qs('#progress');
-  const soundToggle = qs('#soundToggle');
-  let active = 0;
-  let soundOn = false;
-  let audioCtx = null;
-  let toastTimer = null;
-  let climbStep = 0;
-  const completed = new Set();
+  'use strict';
+  const $ = (s,r=document)=>r.querySelector(s);
+  const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+  const landing=$('#landing'), experience=$('#experience'), startBtn=$('#startBtn');
+  const chapterCount=$('#chapterCount'), chapterName=$('#chapterName'), kicker=$('#kicker'), storyTitle=$('#storyTitle'), storyCopy=$('#storyCopy'), lesson=$('#lesson');
+  const taskLabel=$('#taskLabel'), taskCount=$('#taskCount'), taskFill=$('#taskFill'), actionBtn=$('#actionBtn'), prevBtn=$('#prevBtn'), nextBtn=$('#nextBtn'), navStatus=$('#navStatus');
+  const progressNav=$('#progressNav'), interactionHint=$('#interactionHint'), toast=$('#toast'), restartBtn=$('#restartBtn'), soundBtn=$('#soundBtn'), idea=$('#idea31'), visualShell=$('#visualShell'), finalOverlay=$('#finalOverlay'), journeyAgain=$('#journeyAgain'), backToCity=$('#backToCity');
+  const scenes=$$('.scene');
+  let current=0, soundOn=false, audioCtx=null, toastTimer=null;
+  const done=Array.from({length:7},()=>new Set());
 
-  const titles = [
-    'Chapter 01 · The Great Escape','Chapter 02 · The Truth Machine','Chapter 03 · Attack of the Clones',
-    'Chapter 04 · The Impossible Bridge','Chapter 05 · Priority Mountain','Chapter 06 · The Ownership Handoff','Chapter 07 · HOME31 Ignition'
+  const chapters=[
+    {name:'The Retreat Room',kicker:'Chapter 01 · Possibility is not approval',title:'The slides close. Every idea declares victory.',copy:'The retreat creates valuable possibilities—but the proposals leave the room at different levels of clarity, evidence and readiness. Idea 31 assumes enthusiasm is enough.',lesson:'<strong>Reality check:</strong> A retreat proposal is an input. It becomes an initiative only after its purpose, ownership and delivery conditions are understood.',task:'Wake the proposals',total:4,action:'Wake the next proposal',hint:'Tap the highlighted proposal to reveal what is still missing.',messages:['“My owner will be confirmed later.”','“My KPI is successful implementation.”','“My budget is currently called TBD.”','“I am urgent because my title says urgent.”']},
+    {name:'The Initiative Scanner',kicker:'Chapter 02 · Confidence meets evidence',title:'The scanner asks the questions the slide did not.',copy:'Idea 31 must establish its identity, accountability, delivery plan and governance profile before it can compete for resources or management attention.',lesson:'<strong>Minimum identity:</strong> Management needs to know what it is, why it matters, who owns it, what it costs and how success will be measured.',task:'Complete the scan',total:4,action:'Activate the next scan',hint:'Tap the highlighted scan module.',messages:['Identity confirmed: name, problem and HOME31 alignment.','Accountability check: sponsor, owner and supporting divisions.','Delivery check: outcome, milestones, timeline and resources.','Governance check: dependencies, risks, KPI and readiness.']},
+    {name:'The Duplicate Carnival',kicker:'Chapter 03 · Different names, shared capability',title:'Idea 31 meets four “completely unique” cousins.',copy:'Several proposals describe overlapping customer data, knowledge, analytics, workflow and AI capability. Consolidation does not erase valid needs—it creates one stronger architecture.',lesson:'<strong>Enterprise move:</strong> Preserve the business requirements, combine shared capability and avoid multiplying cost, integration and governance effort.',task:'Merge the proposals',total:4,action:'Merge the next proposal',hint:'Tap the highlighted proposal to merge it into the shared capability.',messages:['AI Assistant contributes customer-service requirements.','Super Agent contributes knowledge and workflow requirements.','Smart Bot contributes automation and analytics requirements.','AI Hub contributes shared architecture and governance.']},
+    {name:'Dependency Canyon',kicker:'Chapter 04 · Transformation cannot cross alone',title:'Every missing dependency removes a piece of the bridge.',copy:'Finance, ICT, Data, Risk and the accountable business owner each hold a condition needed for delivery. The route becomes visible only when these conditions connect.',lesson:'<strong>Sequence before speed:</strong> Dependencies are not bureaucracy. They are the practical conditions that make transformation possible.',task:'Build the bridge',total:5,action:'Connect the next dependency',hint:'Tap the highlighted dependency island.',messages:['Finance confirms affordability and the funding envelope.','ICT confirms architecture, integration and security.','Data confirms availability, quality and ownership.','Risk confirms legal, privacy and control requirements.','The business owner confirms requirements, decisions and accountability.']},
+    {name:'Priority Mountain',kicker:'Chapter 05 · Urgency must prove itself',title:'A good idea still needs the right timing.',copy:'Idea 31 climbs through purpose, value, feasibility, readiness and confidence. The summit does not automatically mean “start now”; it means the initiative earns an appropriate place.',lesson:'<strong>Prioritisation:</strong> Decide what should move, when it should move and what must happen first—not whether an idea is personally liked.',task:'Pass the checkpoints',total:5,action:'Climb to the next checkpoint',hint:'Tap the highlighted checkpoint flag.',messages:['WHY: mandate and strategic contribution are clear.','VALUE: institutional impact and urgency are credible.','FEASIBILITY: affordability and resource capacity are realistic.','READINESS: ownership, scope and dependencies are sufficiently clear.','CONFIDENCE: duplication risk and measurability are addressed.']},
+    {name:'Ownership Harbour',kicker:'Chapter 06 · Coordination is not ownership',title:'CPS guides the route. The owner carries the outcome.',copy:'CPS accepts the portfolio map, sequencing view and monitoring responsibility. It does not accept the business outcome, delivery key or accountability commitment.',lesson:'<strong>Operating principle:</strong> CPS connects, structures, coordinates and aligns. The accountable business owner must lead delivery.',task:'Complete the handoff',total:4,action:'Transfer the next responsibility',hint:'Tap the highlighted item to complete the handoff.',messages:['Portfolio map stays with CPS for enterprise coordination.','Sequencing stays visible through the portfolio process.','Monitoring stays connected to HOME31 governance.','The delivery key transfers to the accountable business owner.']},
+    {name:'HOME31 City',kicker:'Chapter 07 · One portfolio, many accountable owners',title:'Idea 31 stops being the centre of the universe.',copy:'It finds the correct place within a connected enterprise portfolio. Six districts activate around shared outcomes, sequencing, investment discipline and accountable delivery.',lesson:'<strong>The destination:</strong> One direction, one enterprise portfolio and many accountable owners—supported by measurable institutional outcomes.',task:'Activate the districts',total:6,action:'Activate the next district',hint:'Tap the highlighted HOME31 district.',messages:['Financial Resilience comes online.','Customer Transformation connects its pathways.','Digital Foundation activates architecture and data flows.','Governance and Assurance activates controls and oversight.','Workforce Readiness activates skills and change capability.','Execution Discipline connects milestones, owners and outcomes.']}
   ];
-  const poses = [
-    {x:505,y:540,s:1.02,r:-7,m:'M-22 44q22 19 44 0',b1:'M-48-2q18-13 34 0',b2:'M14-2q18-13 34 0',cls:'rocket'},
-    {x:500,y:430,s:.88,r:0,m:'M-18 47h36',b1:'M-48-2q18 6 34 0',b2:'M14-2q18 6 34 0',cls:''},
-    {x:500,y:525,s:.86,r:0,m:'M-23 46q23-15 46 0',b1:'M-48-2q18-13 34 0',b2:'M14-2q18-13 34 0',cls:''},
-    {x:500,y:525,s:.83,r:-3,m:'M-18 47h36',b1:'M-48-2q18 6 34 0',b2:'M14-2q18 6 34 0',cls:'rocket'},
-    {x:205,y:605,s:.76,r:-8,m:'M-18 47h36',b1:'M-48-2q18 6 34 0',b2:'M14-2q18 6 34 0',cls:''},
-    {x:500,y:410,s:.83,r:0,m:'M-22 44q22 19 44 0',b1:'M-48-2q18-13 34 0',b2:'M14-2q18-13 34 0',cls:'rocket'},
-    {x:500,y:520,s:.88,r:0,m:'M-22 44q22 19 44 0',b1:'M-48-2q18-13 34 0',b2:'M14-2q18-13 34 0',cls:'celebrate'}
+  const poses=[
+    {x:500,y:505,s:.85,r:-5,m:'M-22 44q22 18 44 0',b1:'M-48-2q18-13 34 0',b2:'M14-2q18-13 34 0'},
+    {x:500,y:365,s:.76,r:0,m:'M-18 45h36',b1:'M-48-2q18 5 34 0',b2:'M14-2q18 5 34 0'},
+    {x:500,y:470,s:.7,r:0,m:'M-22 45q22-15 44 0',b1:'M-48-2q18-13 34 0',b2:'M14-2q18-13 34 0'},
+    {x:500,y:405,s:.68,r:-3,m:'M-18 45h36',b1:'M-48-2q18 5 34 0',b2:'M14-2q18 5 34 0'},
+    {x:145,y:555,s:.62,r:-9,m:'M-18 45h36',b1:'M-48-2q18 5 34 0',b2:'M14-2q18 5 34 0'},
+    {x:500,y:245,s:.66,r:0,m:'M-22 44q22 18 44 0',b1:'M-48-2q18-13 34 0',b2:'M14-2q18-13 34 0'},
+    {x:500,y:315,s:.62,r:0,m:'M-22 44q22 18 44 0',b1:'M-48-2q18-13 34 0',b2:'M14-2q18-13 34 0'}
   ];
+  const stageColors=[['#cfe2dc','#a9ced3'],['#c7e1e4','#94c4cc'],['#e5dff0','#c6b7d7'],['#c3dde0','#8fb7bb'],['#e1e7dd','#c9b99e'],['#c8e0e2','#82b5b7'],['#173a59','#0c2038']];
 
-  function beep(freq=260, duration=.08, type='sine'){
-    if(!soundOn) return;
-    audioCtx ||= new (window.AudioContext || window.webkitAudioContext)();
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = type; osc.frequency.value = freq;
-    gain.gain.setValueAtTime(.045,audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+duration);
-    osc.connect(gain).connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime+duration);
+  function beep(freq=320,duration=.08,type='sine'){
+    if(!soundOn)return;
+    try{audioCtx ||= new (window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(.04,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+duration);o.connect(g).connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+duration)}catch(_){ }
   }
-  function showToast(message){
-    toast.textContent = message; toast.classList.add('show'); clearTimeout(toastTimer);
-    toastTimer = setTimeout(()=>toast.classList.remove('show'),2600);
+  function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2300)}
+  function setPose(){const p=poses[current];idea.setAttribute('transform',`translate(${p.x} ${p.y}) scale(${p.s}) rotate(${p.r})`);$('.idea-mouth',idea).setAttribute('d',p.m);$('.brow-left',idea).setAttribute('d',p.b1);$('.brow-right',idea).setAttribute('d',p.b2)}
+  function activeScene(){return scenes[current]}
+  function sceneItems(){return $$('.hotspot',activeScene())}
+  function nextIncomplete(){return sceneItems().find(el=>!el.classList.contains('done'))}
+  function updateHighlights(){sceneItems().forEach(el=>el.classList.remove('next'));const n=nextIncomplete();if(n)n.classList.add('next')}
+  function updateProgress(){const c=chapters[current],count=done[current].size;taskCount.textContent=`${count} / ${c.total}`;taskFill.style.width=`${count/c.total*100}%`;const completed=count===c.total;actionBtn.textContent=completed?'Chapter complete ✓':c.action;actionBtn.classList.toggle('done',completed);actionBtn.disabled=completed;nextBtn.disabled=!completed&&current<chapters.length-1;nextBtn.textContent=current===chapters.length-1?(completed?'Finish journey ✓':'Complete the city first'):'Next chapter →';navStatus.textContent=completed?'Ready to continue':'Complete the interaction';interactionHint.textContent=completed?(current===6?'The HOME31 portfolio is fully connected.':'Chapter complete. Continue when ready.'):c.hint;updateHighlights();
+    $$('#progressNav button').forEach((b,i)=>{b.classList.toggle('past',i<current||done[i].size===chapters[i].total);b.classList.toggle('active',i===current)});
   }
-  function setPose(index){
-    const p = poses[index];
-    idea.setAttribute('transform',`translate(${p.x} ${p.y}) scale(${p.s}) rotate(${p.r})`);
-    idea.classList.remove('rocket','celebrate'); if(p.cls) idea.classList.add(p.cls);
-    qs('.mouth',idea).setAttribute('d',p.m); qs('.brow-left',idea).setAttribute('d',p.b1); qs('.brow-right',idea).setAttribute('d',p.b2);
-  }
-  function setActive(index){
-    index = Math.max(0,Math.min(6,index));
-    active = index;
-    panels.forEach((p,i)=>p.classList.toggle('active',i===index));
-    worlds.forEach((w,i)=>{w.classList.toggle('active',i===index);w.classList.toggle('past',i<index)});
-    dots.forEach((d,i)=>d.classList.toggle('active',i===index));
-    stage.className = 'visual-stage stage-state';
-    if(completed.has(index)) stage.classList.add(index===4 ? 'action-4-complete' : `action-${index}`);
-    setPose(index);
-    beep(220+index*35,.06,'triangle');
-  }
-  function updateScroll(){
-    const doc = document.documentElement;
-    const overall = doc.scrollHeight-innerHeight;
-    progress.style.width = `${overall>0 ? scrollY/overall*100 : 0}%`;
-    const rect = journey.getBoundingClientRect();
-    const total = journey.offsetHeight-innerHeight;
-    const travelled = Math.max(0,Math.min(total,-rect.top));
-    const p = total ? travelled/total : 0;
-    const idx = Math.min(6,Math.floor(p*7));
-    setActive(idx);
-    readout.textContent = rect.top > innerHeight*.15 ? 'Prologue · Meet Idea 31' : titles[idx];
-  }
-  function jumpTo(index){
-    const start = journey.offsetTop;
-    const total = journey.offsetHeight-innerHeight;
-    const y = start + (index+.12)/7*total;
-    window.scrollTo({top:y,behavior:'smooth'});
-  }
-  function completeButton(btn,label){btn.classList.add('done');btn.textContent=label;btn.disabled=true}
+  function render(){const c=chapters[current];chapterCount.textContent=`Chapter ${current+1} of ${chapters.length}`;chapterName.textContent=c.name;kicker.textContent=c.kicker;storyTitle.textContent=c.title;storyCopy.textContent=c.copy;lesson.innerHTML=c.lesson;taskLabel.textContent=c.task;prevBtn.disabled=current===0;scenes.forEach((s,i)=>{s.classList.toggle('active',i===current);s.classList.toggle('past',i<current)});const [a,b]=stageColors[current];visualShell.style.background=`linear-gradient(150deg,${a},${b})`;setPose();updateProgress();beep(230+current*35,.06,'triangle')}
+  function completeItem(el){if(!el||el.classList.contains('done'))return;const idx=Number(el.dataset.item);el.classList.add('done');done[current].add(idx);if(current===5&&idx===3)activeScene().classList.add('owner-done');showToast(chapters[current].messages[idx]||'Step complete.');beep(350+idx*55,.11,'triangle');updateProgress();if(done[current].size===chapters[current].total){idea.animate([{transform:idea.getAttribute('transform')},{transform:idea.getAttribute('transform')+' translateY(-20px)'},{transform:idea.getAttribute('transform')}],{duration:600,easing:'cubic-bezier(.2,.8,.2,1)'});beep(620,.2,'sine')}}
+  function go(index){if(index<0||index>=chapters.length)return;current=index;render()}
+  function setupProgress(){chapters.forEach((c,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',`Go to chapter ${i+1}: ${c.name}`);b.innerHTML='<span></span>';b.addEventListener('click',()=>go(i));progressNav.appendChild(b)})}
+  function start(){landing.hidden=true;experience.hidden=false;document.body.style.background='var(--navy)';render();window.scrollTo(0,0)}
+  function reset(){finalOverlay.hidden=true;done.forEach(s=>s.clear());$$('.hotspot').forEach(el=>el.classList.remove('done','next'));scenes.forEach(s=>s.classList.remove('owner-done'));current=0;landing.hidden=false;experience.hidden=true;document.body.style.background='var(--ivory)';window.scrollTo(0,0)}
 
-  qsa('.scene-action').forEach(btn=>btn.addEventListener('click',()=>{
-    const action = Number(btn.dataset.action);
-    if(action===4){
-      const labels=['Impact','Affordability','Readiness','Capacity','Summit reached ✓'];
-      const flags=qsa('#world4 .criterion-flag'); const bars=qsa('[data-climb] span');
-      qs('[data-climb]').classList.add('visible');
-      flags[climbStep]?.classList.add('on'); bars[climbStep]?.classList.add('on');
-      beep(300+climbStep*80,.12,'triangle'); climbStep++;
-      if(climbStep<5){btn.textContent=`Climb: ${labels[climbStep-1]}`;showToast(`${climbStep}/5 priority tests cleared.`)}
-      else{completed.add(4);stage.classList.add('action-4-complete');completeButton(btn,'Priority earned ✓');showToast('Idea 31 reached the summit—but only after proving its case.');idea.classList.add('celebrate')}
-      return;
-    }
-    completed.add(action);
-    stage.classList.add(`action-${action}`);
-    const outcomes=[
-      ['Entrance achieved ✓','The retreat inputs are awake. Now the real work begins.'],
-      ['Identity verified ✓','Idea 31 now has the minimum evidence needed for enterprise review.'],
-      ['Duplicates consolidated ✓','Different requests are preserved inside one shared capability.'],
-      ['Bridge completed ✓','Dependencies are visible, connected and ready for sequencing.'],
-      ['', ''],
-      ['Ownership accepted ✓','CPS guides the process; the accountable owner carries the outcome.'],
-      ['HOME31 activated ✓','The initiative now belongs to a connected enterprise portfolio.']
-    ];
-    completeButton(btn,outcomes[action][0]); showToast(outcomes[action][1]);
-    if(action===0 || action===3 || action===5) idea.classList.add('rocket');
-    if(action===6) idea.classList.add('celebrate');
-    beep(action===6?620:360+action*45,.18,action===6?'sine':'triangle');
-  }));
-
-  dots.forEach(d=>d.addEventListener('click',()=>jumpTo(Number(d.dataset.jump))));
-  qs('#launch').addEventListener('click',()=>{jumpTo(0);beep(440,.15,'sawtooth')});
-  qs('.hero-character').addEventListener('click',()=>{qs('.hero-character').animate([{transform:'translateY(0) rotate(0)'},{transform:'translateY(-28px) rotate(-5deg)'},{transform:'translateY(0) rotate(0)'}],{duration:650,easing:'cubic-bezier(.2,.8,.2,1)'});beep(520,.1,'triangle')});
-  idea.addEventListener('click',()=>{idea.classList.toggle('celebrate');showToast('Idea 31 says: “I am strategic… but apparently I still need a budget.”');beep(560,.1,'triangle')});
-  soundToggle.addEventListener('click',()=>{soundOn=!soundOn;soundToggle.textContent=soundOn?'Sound on':'Sound off';soundToggle.setAttribute('aria-pressed',String(soundOn));if(soundOn)beep(440,.12,'sine')});
-  qs('#replay').addEventListener('click',()=>{climbStep=0;completed.clear();qsa('.scene-action').forEach(b=>{b.disabled=false;b.classList.remove('done')});const original=['Detonate the idea wall','Run the full scan','Merge the clones','Build the dependency bridge','Climb: Mandate','Complete the handoff','Ignite the HOME31 city'];qsa('.scene-action').forEach((b,i)=>b.textContent=original[i]);qsa('#world4 .criterion-flag,[data-climb] span').forEach(e=>e.classList.remove('on'));qs('[data-climb]').classList.remove('visible');window.scrollTo({top:0,behavior:'smooth'})});
-
-  addEventListener('scroll',updateScroll,{passive:true}); addEventListener('resize',updateScroll); updateScroll();
+  setupProgress();
+  startBtn.addEventListener('click',start);
+  actionBtn.addEventListener('click',()=>completeItem(nextIncomplete()));
+  prevBtn.addEventListener('click',()=>go(current-1));
+  nextBtn.addEventListener('click',()=>{if(current<chapters.length-1&&done[current].size===chapters[current].total)go(current+1);else if(current===chapters.length-1&&done[current].size===chapters[current].total){finalOverlay.hidden=false;beep(680,.28,'sine')}});
+  journeyAgain.addEventListener('click',reset);
+  backToCity.addEventListener('click',()=>{finalOverlay.hidden=true;backToCity.blur()});
+  restartBtn.addEventListener('click',reset);
+  soundBtn.addEventListener('click',()=>{soundOn=!soundOn;soundBtn.textContent=soundOn?'Sound on':'Sound off';soundBtn.setAttribute('aria-pressed',String(soundOn));if(soundOn)beep(440,.12,'sine')});
+  $$('.hotspot').forEach(el=>el.addEventListener('click',()=>{if(el.closest('.scene')===activeScene())completeItem(el)}));
+  idea.addEventListener('click',()=>{showToast('Idea 31: “I am still strategic. I am simply becoming executable.”');beep(520,.1,'triangle')});
+  document.addEventListener('keydown',e=>{if(experience.hidden)return;if(e.key==='ArrowRight'&&done[current].size===chapters[current].total)go(Math.min(6,current+1));if(e.key==='ArrowLeft')go(Math.max(0,current-1));if(e.key==='Enter'&&document.activeElement===document.body)completeItem(nextIncomplete())});
+  let touchX=null;visualShell.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX},{passive:true});visualShell.addEventListener('touchend',e=>{if(touchX===null)return;const dx=e.changedTouches[0].clientX-touchX;touchX=null;if(Math.abs(dx)<70)return;if(dx<0&&done[current].size===chapters[current].total)go(Math.min(6,current+1));if(dx>0)go(Math.max(0,current-1))},{passive:true});
 })();
 </script>
 </body>
