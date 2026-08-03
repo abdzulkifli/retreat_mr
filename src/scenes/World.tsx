@@ -1,6 +1,6 @@
 import { Html, Line, RoundedBox, Sparkles, Torus } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState, type ReactNode } from 'react';
 import * as THREE from 'three';
 import { chapters, type ChapterId } from '../story/chapters';
 import { Idea31 } from '../characters/Idea31';
@@ -18,7 +18,7 @@ const inactive = '#9CA5A0';
 type Point3 = [number, number, number];
 
 function Label({ children, position, size = .18, color = navy, pill = false }: {
-  children: string;
+  children: ReactNode;
   position: Point3;
   size?: number;
   color?: string;

@@ -1,6 +1,6 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { ContactShadows } from '@react-three/drei';
-import { Suspense, useMemo, useRef } from 'react';
+import { Suspense, useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { CameraRig } from './CameraRig';
 import { World } from '../scenes/World';
@@ -9,10 +9,56 @@ import { chapters, type ChapterId } from '../story/chapters';
 function supportsWebGL(): boolean {
   try {
     const canvas = document.createElement('canvas');
-    return Boolean(window.WebGLRenderingContext && canvas.getContext('webgl'));
+    return Boolean(window.WebGL2RenderingContext && canvas.getContext('webgl2'));
   } catch {
     return false;
   }
+}
+
+
+function BootProbe({
+  onProgress,
+  onReady,
+  onFailure
+}: {
+  onProgress?: (value: number, message: string) => void;
+  onReady?: () => void;
+  onFailure?: () => void;
+}) {
+  const { gl, scene, camera } = useThree();
+  const completed = useRef(false);
+
+  useEffect(() => {
+    const canvas = gl.domElement;
+    const contextLost = (event: Event) => {
+      event.preventDefault();
+      onFailure?.();
+    };
+    canvas.addEventListener('webglcontextlost', contextLost, false);
+
+    onProgress?.(58, 'Building the continuous world');
+    const timers = [
+      window.setTimeout(() => onProgress?.(72, 'Lighting the Retreat Room'), 180),
+      window.setTimeout(() => onProgress?.(86, 'Warming character animation'), 420),
+      window.setTimeout(() => {
+        try { gl.compile(scene, camera); } catch { /* Safe-mode watchdog handles renderer issues. */ }
+        onProgress?.(96, 'Finalising the opening shot');
+      }, 700),
+      window.setTimeout(() => {
+        if (completed.current) return;
+        completed.current = true;
+        onProgress?.(100, 'Journey ready');
+        onReady?.();
+      }, 1100)
+    ];
+
+    return () => {
+      timers.forEach(window.clearTimeout);
+      canvas.removeEventListener('webglcontextlost', contextLost, false);
+    };
+  }, [camera, gl, onFailure, onProgress, onReady, scene]);
+
+  return null;
 }
 
 function Atmosphere({ index, quality }: { index: number; quality: 'high' | 'medium' | 'low' }) {
@@ -43,16 +89,29 @@ export function ExperienceCanvas({
   progress,
   reducedMotion,
   quality,
-  onAct
+  onAct,
+  onBootProgress,
+  onReady,
+  onFailure
 }: {
   index: number;
   progress: Record<ChapterId, number>;
   reducedMotion: boolean;
   quality: 'high' | 'medium' | 'low';
   onAct: () => void;
+  onBootProgress?: (value: number, message: string) => void;
+  onReady?: () => void;
+  onFailure?: () => void;
 }) {
   const webglSupported = useMemo(() => typeof window === 'undefined' || supportsWebGL(), []);
   const active = chapters[index];
+
+  useEffect(() => {
+    if (!webglSupported) {
+      onBootProgress?.(100, 'Accessible illustrated mode ready');
+      onReady?.();
+    }
+  }, [webglSupported, onBootProgress, onReady]);
 
   if (!webglSupported) {
     return (
@@ -70,6 +129,7 @@ export function ExperienceCanvas({
       dpr={quality === 'high' ? [1, 1.65] : quality === 'medium' ? [1, 1.25] : 1}
       camera={{ position: [0, 2.5, 8.4], fov: 42 }}
       gl={{ antialias: quality !== 'low', powerPreference: 'high-performance', alpha: false }}
+      onCreated={() => onBootProgress?.(42, '3D renderer ready')}
     >
       <color attach="background" args={['#F4EFE5']} />
       <fog attach="fog" args={['#F4EFE5', 11, 27]} />
@@ -77,9 +137,10 @@ export function ExperienceCanvas({
       <hemisphereLight args={['#F4EFE5', '#10233F', quality === 'low' ? .65 : .95]} />
       <directionalLight position={[4, 10, 6]} intensity={2.1} castShadow={quality !== 'low'} shadow-mapSize-width={quality === 'high' ? 2048 : 1024} shadow-mapSize-height={quality === 'high' ? 2048 : 1024} />
       <Atmosphere index={index} quality={quality} />
+      <BootProbe onProgress={onBootProgress} onReady={onReady} onFailure={onFailure} />
       <Suspense fallback={null}>
         <World activeIndex={index} progress={progress} onAct={onAct} quality={quality} reducedMotion={reducedMotion} />
-        {quality !== 'low' && (
+        {quality === 'high' && (
           <ContactShadows
             position={[active.position[0], active.position[1] - .78, active.position[2]]}
             opacity={.23}

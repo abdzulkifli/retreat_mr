@@ -1,61 +1,69 @@
 # HOME31 — The Journey of an Idea
-## Phase 4: Interactive World Build
 
-This repository is configured specifically for:
+Phase 4.1 adds a cinematic loading and entry sequence to the interactive React/Three.js journey.
 
-`https://abdzulkifli.github.io/retreat_mr/`
+## Loading experience
 
-## What changed in Phase 4
+The loading screen now follows real application lifecycle milestones:
 
-- The 3D world itself is now interactive.
-- Each chapter highlights one meaningful object at a time.
-- Hovering and tapping produces immediate visual feedback.
-- Seven environments transform as progress is completed.
-- Idea 31 has stronger expressions, an animated aura, reaction symbols and a propulsion effect.
-- Scroll and arrow-key navigation are available after completing a chapter.
-- Mobile keeps the 3D stage and narrative panel in separate protected zones.
-- Sound is optional and generated locally through the Web Audio API.
-- No external models, fonts, HDR files or runtime CDN assets are required.
+1. browser and capability check;
+2. WebGL renderer creation;
+3. continuous-world scene graph mounting;
+4. Retreat Room lighting;
+5. character animation warm-up;
+6. shader compilation and first-frame verification;
+7. journey ready.
 
-## Upload correctly
+It also includes:
 
-Extract the ZIP and upload the **contents** directly to the root of the `retreat_mr` repository.
-At the repository's first level you must see:
-
-- `.github/`
-- `public/`
-- `src/`
-- `index.html`
-- `package.json`
-- `vite.config.ts`
-
-Do not upload a parent folder containing these files.
-
-## GitHub Pages setting
-
-Open **Settings → Pages** and set **Source** to **GitHub Actions**.
-
-Then open **Actions → Deploy HOME31 Journey → Run workflow**.
-
-## Verify deployment
-
-Open:
-
-`https://abdzulkifli.github.io/retreat_mr/health.html`
-
-It should display **DEPLOYMENT OK**.
+- an animated HOME31 assembly symbol;
+- an expressive Idea 31 loading character;
+- auto-detected graphics quality with manual override;
+- cinematic/reduced-motion selection;
+- explicit sound consent;
+- a smooth transition directly into Chapter 1;
+- WebGL fallback readiness handling.
 
 ## Local development
 
 ```bash
-npm install --legacy-peer-deps
+npm install
 npm run dev
 ```
 
-## Production validation
+## Production build
 
 ```bash
-npm run check
 npm run build
 npm run preview
 ```
+
+## GitHub Pages deployment
+
+This repository is configured for:
+
+```text
+https://abdzulkifli.github.io/retreat_mr/
+```
+
+1. Upload all files to the root of the `retreat_mr` repository.
+2. Open **Settings → Pages**.
+3. Set the source to **GitHub Actions**.
+4. Push to `main` or manually run the deployment workflow.
+5. Confirm `https://abdzulkifli.github.io/retreat_mr/health.html` before opening the main experience.
+
+## Important
+
+Do not upload the outer extracted folder. The repository root must directly contain `.github`, `src`, `public`, `package.json`, `index.html`, and `vite.config.ts`.
+
+
+## Loader fail-safe
+
+This version cannot remain on the landing loader indefinitely:
+
+- if the WebGL scene starts, the normal cinematic entry becomes available;
+- if WebGL does not confirm readiness within seven seconds, performance mode becomes available;
+- if the React bundle itself never starts, the static landing page displays a deployment diagnosis after ten seconds;
+- the GitHub workflow verifies that `dist/index.html` references `/retreat_mr/assets/` and does not reference raw `/src/main.tsx`.
+
+If the static diagnosis appears, GitHub Pages is serving repository source rather than the compiled Actions artifact. Set **Settings → Pages → Source** to **GitHub Actions**.

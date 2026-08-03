@@ -1,7 +1,7 @@
 {
   "name": "home31-journey-of-an-idea",
   "private": true,
-  "version": "0.3.0",
+  "version": "0.4.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -28,5 +28,5 @@
     "typescript": "5.7.2",
     "vite": "6.0.3"
   },
-  "description": "Interactive HOME31 3D storytelling journey for GitHub Pages"
+  "description": "Interactive HOME31 3D storytelling journey with cinematic loading experience for GitHub Pages"
 }

@@ -3,6 +3,8 @@ import { useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 
+const gold = '#C6A15B';
+
 export type IdeaMood = 'bold' | 'curious' | 'shocked' | 'panic' | 'determined' | 'humble' | 'proud';
 
 const moodShape: Record<IdeaMood, { mouthY: number; mouthX: number; brow: number; glow: string; symbol: string }> = {

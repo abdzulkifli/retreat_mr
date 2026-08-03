@@ -8,9 +8,9 @@
   <meta name="color-scheme" content="light" />
   <title>HOME31 — The Journey of an Idea</title>
   <style>
-    html,body{margin:0;background:#f4efe5;color:#10233f;font-family:system-ui,sans-serif}
-    #boot{position:fixed;inset:0;display:grid;place-items:center;text-align:center;padding:24px;background:#f4efe5;z-index:9999}
-    #boot strong{display:block;font-size:clamp(2rem,7vw,5rem);line-height:.95}
+    html,body{margin:0;background:#10233f;color:#f4efe5;font-family:system-ui,sans-serif}
+    #boot{position:fixed;inset:0;display:grid;place-items:center;text-align:center;padding:24px;background:radial-gradient(circle at 60% 35%,#173a55,#10233f 52%,#09182d);z-index:9999}
+    #boot strong{display:block;font-size:clamp(2rem,7vw,5rem);line-height:.95;letter-spacing:-.05em}
     #boot span{display:block;margin-top:14px;opacity:.68}
   </style>
 </head>
@@ -19,6 +19,13 @@
   <div id="root">
     <div id="boot"><div><strong>Preparing Idea 31…</strong><span>Loading the HOME31 journey.</span></div></div>
   </div>
+  <script>
+    window.setTimeout(function () {
+      var boot = document.getElementById('boot');
+      if (!boot) return;
+      boot.innerHTML = '<div style="max-width:720px"><strong style="font-size:clamp(1.8rem,5vw,3.6rem)">The application did not start.</strong><span style="line-height:1.6">GitHub Pages may be serving the raw React source instead of the compiled <code>dist</code> build. Open Repository → Settings → Pages and select <b>GitHub Actions</b>, then run the deployment workflow.</span><a href="./health.html" style="display:inline-block;margin-top:20px;padding:11px 16px;border-radius:999px;background:#f4efe5;color:#10233f;text-decoration:none;font-weight:700">Check deployment health</a></div>';
+    }, 10000);
+  </script>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

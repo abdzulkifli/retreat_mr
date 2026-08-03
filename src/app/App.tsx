@@ -1,10 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useMachine } from '@xstate/react';
 import { storyMachine } from '../story/storyMachine';
 import { chapters } from '../story/chapters';
 import { ExperienceCanvas } from '../experience/ExperienceCanvas';
 import { StoryPanel } from '../ui/StoryPanel';
 import { Controls } from '../ui/Controls';
+import { LoadingExperience } from '../ui/LoadingExperience';
+
+type Quality = 'high' | 'medium' | 'low';
 
 let audioContext: AudioContext | null = null;
 
@@ -12,6 +15,7 @@ function playInteractionTone(enabled: boolean, completed: boolean) {
   if (!enabled || typeof window === 'undefined') return;
   try {
     audioContext ??= new AudioContext();
+    if (audioContext.state === 'suspended') void audioContext.resume();
     const now = audioContext.currentTime;
     const oscillator = audioContext.createOscillator();
     const gain = audioContext.createGain();
@@ -25,17 +29,77 @@ function playInteractionTone(enabled: boolean, completed: boolean) {
     oscillator.start(now);
     oscillator.stop(now + .26);
   } catch {
-    // Audio is optional. The visual journey must remain fully usable without it.
+    // Audio is optional. The visual journey remains fully usable without it.
   }
+}
+
+function detectQuality(): Quality {
+  if (typeof window === 'undefined') return 'medium';
+  const deviceMemory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 8;
+  const cores = navigator.hardwareConcurrency ?? 8;
+  const compactScreen = Math.min(window.innerWidth, window.innerHeight) < 760;
+  if (deviceMemory <= 4 || cores <= 4 || compactScreen) return 'low';
+  if (deviceMemory <= 8 || cores <= 8 || window.devicePixelRatio > 1.75) return 'medium';
+  return 'high';
 }
 
 export function App() {
   const [state, send] = useMachine(storyMachine);
   const [started, setStarted] = useState(false);
+  const [loaderVisible, setLoaderVisible] = useState(true);
+  const [loaderLeaving, setLoaderLeaving] = useState(false);
+  const [sceneReady, setSceneReady] = useState(false);
+  const [safeMode, setSafeMode] = useState(false);
+  const [bootTarget, setBootTarget] = useState(12);
+  const [bootProgress, setBootProgress] = useState(4);
+  const [bootMessage, setBootMessage] = useState('Checking browser capabilities');
   const wheelLock = useRef(false);
+  const qualityDetected = useRef(false);
   const { index, progress, completed, sound, reducedMotion, quality } = state.context;
   const chapter = chapters[index];
   const chapterProgress = progress[chapter.id];
+  const loaderReady = (sceneReady || safeMode) && bootProgress >= 99.5;
+
+  useEffect(() => {
+    if (qualityDetected.current) return;
+    qualityDetected.current = true;
+    send({ type: 'SET_QUALITY', quality: detectQuality() });
+  }, [send]);
+
+  useEffect(() => {
+    if (sceneReady) return;
+    const watchdog = window.setTimeout(() => {
+      setSafeMode(true);
+      setBootTarget(100);
+      setBootMessage('Performance mode ready');
+      send({ type: 'SET_QUALITY', quality: 'low' });
+    }, 7000);
+    return () => window.clearTimeout(watchdog);
+  }, [sceneReady, send]);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setBootProgress((current) => {
+        if (current >= bootTarget) return current;
+        const distance = bootTarget - current;
+        const step = Math.max(.7, Math.min(3.2, distance * .13));
+        return Math.min(bootTarget, current + step);
+      });
+    }, 28);
+    return () => window.clearInterval(timer);
+  }, [bootTarget]);
+
+  const handleBootProgress = useCallback((value: number, message: string) => {
+    setBootTarget((current) => Math.max(current, value));
+    setBootMessage(message);
+  }, []);
+
+  const handleSceneReady = useCallback(() => {
+    setSceneReady(true);
+    setSafeMode(false);
+    setBootTarget(100);
+    setBootMessage('Journey ready');
+  }, []);
 
   const act = () => {
     if (completed[chapter.id]) return;
@@ -51,6 +115,17 @@ export function App() {
       return;
     }
     send({ type: 'NEXT' });
+  };
+
+  const enterJourney = (withSound: boolean) => {
+    if (!loaderReady) return;
+    if (withSound && !sound) send({ type: 'TOGGLE_SOUND' });
+    if (withSound) playInteractionTone(true, true);
+    setLoaderLeaving(true);
+    window.setTimeout(() => {
+      setStarted(true);
+      setLoaderVisible(false);
+    }, reducedMotion ? 80 : 760);
   };
 
   useEffect(() => {
@@ -91,6 +166,8 @@ export function App() {
 
   return (
     <main className="app-shell">
+      <a className="skip-link" href="#story-content">Skip to story</a>
+
       <div className="brand" aria-label="HOME31 The Journey of an Idea">
         <strong>HOME31</strong>
         <span>The Journey of an Idea</span>
@@ -103,11 +180,19 @@ export function App() {
           reducedMotion={reducedMotion}
           quality={quality}
           onAct={act}
+          onBootProgress={handleBootProgress}
+          onReady={handleSceneReady}
+          onFailure={() => {
+            setSafeMode(true);
+            setBootTarget(100);
+            setBootMessage('Performance mode ready');
+            send({ type: 'SET_QUALITY', quality: 'low' });
+          }}
         />
       </div>
 
       {started && (
-        <>
+        <div id="story-content">
           <div className="chapter-transition" key={chapter.id} aria-hidden="true">
             <span>{chapter.number}</span>
           </div>
@@ -131,22 +216,23 @@ export function App() {
             onQuality={(nextQuality) => send({ type: 'SET_QUALITY', quality: nextQuality })}
             onReset={() => send({ type: 'RESET' })}
           />
-        </>
+        </div>
       )}
 
-      {!started && (
-        <section className="intro-screen" aria-labelledby="intro-title">
-          <div className="intro-copy">
-            <p className="eyebrow">An interactive HOME31 story</p>
-            <h1 id="intro-title">Help one idea survive the journey.</h1>
-            <p>
-              Idea 31 wakes after the Management Retreat convinced that implementation starts tomorrow.
-              It is about to discover what turns an exciting proposal into accountable delivery.
-            </p>
-            <button type="button" onClick={() => setStarted(true)}>Begin the journey</button>
-            <span>Use highlighted objects, scrolling, arrow keys or the story controls.</span>
-          </div>
-        </section>
+      {loaderVisible && (
+        <div className={loaderLeaving ? 'loader-layer is-leaving' : 'loader-layer'}>
+          <LoadingExperience
+            progress={bootProgress}
+            message={bootMessage}
+            ready={loaderReady}
+            safeMode={safeMode && !sceneReady}
+            quality={quality}
+            reducedMotion={reducedMotion}
+            onQuality={(nextQuality) => send({ type: 'SET_QUALITY', quality: nextQuality })}
+            onMotion={() => send({ type: 'TOGGLE_MOTION' })}
+            onEnter={enterJourney}
+          />
+        </div>
       )}
     </main>
   );
